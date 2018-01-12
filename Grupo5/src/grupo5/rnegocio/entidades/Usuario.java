@@ -5,31 +5,33 @@ import java.util.Date;
 
 
 public class Usuario {
-    private int id_Usuario;
+    private int id;
     private String nombre;
+    private String email;
+
+    public Usuario(int id, String nombre, String email, String password, Roles roles, Date creado, Date actualizado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.creado = creado;
+        this.actualizado = actualizado;
+    }
     private String password;
-    private int id_Rol;
+    private Roles roles;
     private Date creado;
     private Date actualizado;
 
     public Usuario() {
     }
 
-    public Usuario(int id_Usuario, String nombre, String password, int id_Rol, Date creado, Date actualizado) {
-        this.id_Usuario = id_Usuario;
-        this.nombre = nombre;
-        this.password = password;
-        this.id_Rol = id_Rol;
-        this.creado = creado;
-        this.actualizado = actualizado;
+    public int getId() {
+        return id;
     }
 
-    public int getId_Usuario() {
-        return id_Usuario;
-    }
-
-    public void setId_Usuario(int id_Usuario) {
-        this.id_Usuario = id_Usuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -40,6 +42,14 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -48,12 +58,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getId_Rol() {
-        return id_Rol;
+    public Roles getRoles() {
+        return roles;
     }
 
-    public void setId_Rol(int id_Rol) {
-        this.id_Rol = id_Rol;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
     public Date getCreado() {
@@ -70,9 +80,7 @@ public class Usuario {
 
     public void setActualizado(Date actualizado) {
         this.actualizado = actualizado;
-    }
-    
-    
-    
+    }  
+   
 }
            
