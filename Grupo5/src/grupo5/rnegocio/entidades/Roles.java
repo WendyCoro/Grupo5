@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Usuario
  */
 public class Roles {
-    private int id_Roles;
+    private int id;
     private String nombre;
     private Date creado;
     private Date actualizado;
@@ -20,19 +20,19 @@ public class Roles {
     public Roles() {
     }
 
-    public Roles(int id_Roles, String nombre, Date creado, Date actualizado) {
-        this.id_Roles = id_Roles;
+    public Roles(int id, String nombre, Date creado, Date actualizado) {
+        this.id = id;
         this.nombre = nombre;
         this.creado = creado;
         this.actualizado = actualizado;
     }
 
-    public int getId_Roles() {
-        return id_Roles;
+    public int getId() {
+        return id;
     }
 
-    public void setId_Roles(int id_Roles) {
-        this.id_Roles = id_Roles;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
