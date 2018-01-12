@@ -1,5 +1,6 @@
 
 package gupo5.accesodatos;
+import java.util.List;
 import java.util.sql.*;
 
 public class Conexion {
@@ -25,7 +26,7 @@ public class Conexion {
         }
     }
 
-    public ResultSet ejecutarQuery(String comandoSQL, List<Parametro1> listaParametros) {
+    public ResultSet ejecutarQuery(String comandoSQL, List<Parametro> listaParametros) {
         ResultSet resultado = null;
         try {
             PreparedStatement estado = conexion.prepareStatement(comandoSQL);

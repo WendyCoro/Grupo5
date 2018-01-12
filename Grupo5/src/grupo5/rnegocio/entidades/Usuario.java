@@ -15,7 +15,7 @@ public class Usuario {
     
     public Usuario() {
     }
-    
+   
     public Usuario(int id, String nombre, String email, String password, Roles roles, Date creado, Date actualizado) {
         this.id = id;
         this.nombre = nombre;
