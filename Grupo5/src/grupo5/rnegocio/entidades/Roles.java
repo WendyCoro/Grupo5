@@ -48,4 +48,6 @@ public class Roles {
     public void setActualizado(Date actualizado) {
         this.actualizado = actualizado;
     }   
+    
 }
+
