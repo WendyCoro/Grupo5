@@ -1,8 +1,6 @@
 
 package grupo5.rnegocio.entidades;
-
 import java.util.Date;
-
 
 public class Usuario {
     private int id;
