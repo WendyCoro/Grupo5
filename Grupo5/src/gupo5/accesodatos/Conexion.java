@@ -1,7 +1,7 @@
 
 package gupo5.accesodatos;
-import java.util.List;
-import java.util.sql.*;
+import java.util.*;
+import java.sql.*;
 
 public class Conexion {
     Scanner entrada = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Conexion {
         try {
             PreparedStatement estado = conexion.prepareStatement(comandoSQL);
             if (listaParametros != null) {
-                for (Parametro1 valorP : listaParametros) {
+                for (Parametro valorP : listaParametros) {
                     
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
@@ -48,13 +48,13 @@ public class Conexion {
         return resultado;
     }
 
-    public int ejecutarComando(String sql, ArrayList<Parametro1> ValoresParametro) {
+    public int ejecutarComando(String sql, ArrayList<Parametro> ValoresParametro) {
         int nFilasAfectadas=0;
         ResultSet resultado = null;
         try {
             PreparedStatement estado = conexion.prepareStatement(sql);
             if (ValoresParametro != null) {
-                for (Parametro1 valorP : ValoresParametro) {
+                for (Parametro valorP : ValoresParametro) {
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
                     } else {
