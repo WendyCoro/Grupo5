@@ -1,4 +1,3 @@
-
 package grupo5.rnegocio.entidades;
 import java.util.Date;
 
@@ -78,7 +77,6 @@ public class Usuario {
 
     public void setActualizado(Date actualizado) {
         this.actualizado = actualizado;
-    }  
-   
+    }   
 }
            
