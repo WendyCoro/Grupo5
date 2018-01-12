@@ -8,7 +8,14 @@ public class Usuario {
     private int id;
     private String nombre;
     private String email;
-
+    private String password;
+    private Roles roles;
+    private Date creado;
+    private Date actualizado;
+    
+    public Usuario() {
+    }
+    
     public Usuario(int id, String nombre, String email, String password, Roles roles, Date creado, Date actualizado) {
         this.id = id;
         this.nombre = nombre;
@@ -17,15 +24,8 @@ public class Usuario {
         this.roles = roles;
         this.creado = creado;
         this.actualizado = actualizado;
-    }
-    private String password;
-    private Roles roles;
-    private Date creado;
-    private Date actualizado;
-
-    public Usuario() {
-    }
-
+    }  
+ 
     public int getId() {
         return id;
     }
