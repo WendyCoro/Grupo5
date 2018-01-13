@@ -1,6 +1,5 @@
 package grupo5.rnegocio.impl;
 
-
 import grupo5.rnegocio.dao.*;
 import grupo5.rnegocio.entidades.*;
 import gupo5.accesodatos.*;
@@ -60,7 +59,7 @@ public class ImplEtiquetas implements IEtiquetas{
         }
         return lista;
     }  
-    
+ 
     @Override
     public Etiquetas obtener(int codigo) throws Exception{
         Etiquetas etiquetas = null;
