@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 public class Conexion {
-    Scanner entrada = new Scanner(System.in);
+    
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     String url = "jdbc:sqlserver://localhost:1433;databaseName=MALLSHOPPING";
     String usuario = "macas";
@@ -48,13 +48,12 @@ public class Conexion {
         return resultado;
     }
 
-    public int ejecutarComando(String sql, ArrayList<Parametro> ValoresParametro) {
-        int nFilasAfectadas=0;
-        ResultSet resultado = null;
+    public int ejecutarComando(String sql, List<Parametro> lst) {
+        int nFilasAfectadas=0;    
         try {
             PreparedStatement estado = conexion.prepareStatement(sql);
-            if (ValoresParametro != null) {
-                for (Parametro valorP : ValoresParametro) {
+            if (lst != null) {
+               for (Parametro valorP : lst) {
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
                     } else {
