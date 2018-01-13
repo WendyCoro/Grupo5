@@ -62,30 +62,9 @@ public class ImplEtiquetas_publicaciones implements IEtiquetas_publicaciones{
     
     @Override
     public Etiquetas_publicaciones obtener(int codigo) throws Exception{
-        Etiquetas_publicaciones etiquetas_publicaciones = null;
-        String sql="SELECT * FROM Etiquetas_publicaciones where id=?;";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, Etiqueta_id));
-        Conexion con = null;
-        try{
-            con = new Conexion();
-            con.conectar();
-            ResultSet rst = con.ejecutarQuery(sql, lstPar);
-            while (rst.next()){
-                etiquetas_publicaciones = new Etiquetas_publicaciones();
-                etiquetas_publicaciones.setEtiqueta_id(rst.getInt(1));
-                etiquetas_publicaciones.setPublicacion_id(rst.getInt(2));
-                etiquetas_publicaciones.setCreado(rst.getDate(3));
-                etiquetas_publicaciones.setActualizado(rst.getDate(4));
-            }
-        }catch (Exception e) {
-            throw e;
-        }finally {
-            if(con!=null)
-            con.desconectar();
-        }
-        return etiquetas_publicaciones;
-    }
+        return null;
+        
+    }  
 }
 
 
