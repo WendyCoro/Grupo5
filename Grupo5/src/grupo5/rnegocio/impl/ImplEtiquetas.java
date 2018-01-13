@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ImplEtiquetas implements IEtiquetas{
 
-    private Object Id;
     @Override
     public int insertar(Etiquetas etiquetas) throws Exception{
         int numFilasAfectadas=0;
@@ -60,30 +59,9 @@ public class ImplEtiquetas implements IEtiquetas{
         return lista;
     }  
  
-    @Override
+   @Override
     public Etiquetas obtener(int codigo) throws Exception{
-        Etiquetas etiquetas = null;
-        String sql="SELECT * FROM Etiquetas where id=?;";
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, Id));
-        Conexion con = null;
-        try{
-            con = new Conexion();
-            con.conectar();
-            ResultSet rst = con.ejecutarQuery(sql, lstPar);
-            while (rst.next()){
-                etiquetas = new Etiquetas();
-                etiquetas.setId(rst.getInt(1));
-                etiquetas.setNombre(rst.getString(2));
-                etiquetas.setCreado(rst.getDate(3));
-                etiquetas.setActualizado(rst.getDate(4));
-            }
-        }catch (Exception e) {
-            throw e;
-        }finally {
-            if(con!=null)
-            con.desconectar();
-        }
-        return etiquetas;
-    }
+        return null;
+        
+    }  
 }
