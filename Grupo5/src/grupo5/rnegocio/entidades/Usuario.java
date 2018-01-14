@@ -2,81 +2,83 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Usuario {
-    private int id;
-    private String nombre;
-    private String email;
-    private String password;
-    private Roles roles;
-    private Date creado;
-    private Date actualizado;
-    
+    private int Usuario_Id;
+    private String Nombre;
+    private String Email;
+    private String Password;
+    private Roles Roles;
+    private Date Creado;
+    private Date Actualizado;
+
     public Usuario() {
     }
-   
-    public Usuario(int id, String nombre, String email, String password, Roles roles, Date creado, Date actualizado) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-        this.creado = creado;
-        this.actualizado = actualizado;
-    }  
- 
-    public int getId() {
-        return id;
+
+    public Usuario(int Usuario_Id, String Nombre, String Email, String Password, Roles Roles, Date Creado, Date Actualizado) {
+        this.Usuario_Id = Usuario_Id;
+        this.Nombre = Nombre;
+        this.Email = Email;
+        this.Password = Password;
+        this.Roles = Roles;
+        this.Creado = Creado;
+        this.Actualizado = Actualizado;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUsuario_Id() {
+        return Usuario_Id;
+    }
+
+    public void setUsuario_Id(int Usuario_Id) {
+        this.Usuario_Id = Usuario_Id;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
     public Roles getRoles() {
-        return roles;
+        return Roles;
     }
 
-    public void setRoles(Roles roles) {
-        this.roles = roles;
+    public void setRoles(Roles Roles) {
+        this.Roles = Roles;
     }
 
     public Date getCreado() {
-        return creado;
+        return Creado;
     }
 
-    public void setCreado(Date creado) {
-        this.creado = creado;
+    public void setCreado(Date Creado) {
+        this.Creado = Creado;
     }
 
     public Date getActualizado() {
-        return actualizado;
+        return Actualizado;
     }
 
-    public void setActualizado(Date actualizado) {
-        this.actualizado = actualizado;
-    }   
+    public void setActualizado(Date Actualizado) {
+        this.Actualizado = Actualizado;
+    }
+    
+   
 }
            
