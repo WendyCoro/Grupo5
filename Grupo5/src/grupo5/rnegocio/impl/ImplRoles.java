@@ -14,7 +14,7 @@ public class ImplRoles implements IRoles{
         int numFilasAfectadas=0;
         String sql="insert into Roles values(?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, roles.getId()));
+        lstPar.add(new Parametro(1, roles.getRoles_Id()));
         lstPar.add(new Parametro(2, roles.getNombre()));
         lstPar.add(new Parametro(3, roles.getCreado()));
         lstPar.add(new Parametro(4, roles.getActualizado()));
@@ -44,7 +44,7 @@ public class ImplRoles implements IRoles{
             ResultSet rst = con.ejecutarQuery(sql, null);
             while (rst.next()){
                 roles = new Roles();
-                roles.setId(rst.getInt(1));
+                roles.setRoles_Id(rst.getInt(1));
                 roles.setNombre(rst.getString(2));
                 roles.setCreado(rst.getDate(3));
                 roles.setActualizado(rst.getDate(4));
