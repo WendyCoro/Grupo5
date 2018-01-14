@@ -13,7 +13,7 @@ public class ImplNiveles implements INiveles{
         int numFilasAfectadas=0;
         String sql="insert into Niveles values(?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, niveles.getId_Niveles()));
+        lstPar.add(new Parametro(1, niveles.getNiveles_Id()));
         lstPar.add(new Parametro(2, niveles.getNombre()));
         lstPar.add(new Parametro(3, niveles.getCreado()));
         lstPar.add(new Parametro(4, niveles.getActualizado()));
