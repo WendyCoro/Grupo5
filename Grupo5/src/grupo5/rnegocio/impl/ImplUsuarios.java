@@ -1,5 +1,4 @@
 package grupo5.rnegocio.impl;
-
 import grupo5.rnegocio.dao.*;
 import grupo5.rnegocio.entidades.*;
 import gupo5.accesodatos.*;
@@ -14,11 +13,11 @@ public class ImplUsuarios implements IUsuario{
         int numFilasAfectadas=0;
         String sql="insert into Usuario values(?,?,?,?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, usuario.getId()));
+        lstPar.add(new Parametro(1, usuario.getUsuario_Id()));
         lstPar.add(new Parametro(2, usuario.getNombre()));
         lstPar.add(new Parametro(3, usuario.getEmail()));
         lstPar.add(new Parametro(4, usuario.getPassword()));
-        lstPar.add(new Parametro(5, usuario.getRoles().getId()));
+        lstPar.add(new Parametro(5, usuario.getRoles().getRoles_Id()));
         lstPar.add(new Parametro(6, usuario.getCreado()));
         lstPar.add(new Parametro(7, usuario.getActualizado()));
         Conexion con = null;
@@ -47,7 +46,7 @@ public class ImplUsuarios implements IUsuario{
             ResultSet rst = con.ejecutarQuery(sql, null);
             while (rst.next()){
                 usuario = new Usuario();
-                usuario.setId(rst.getInt(1));
+                usuario.setUsuario_Id(rst.getInt(1));
                 usuario.setNombre(rst.getString(2));
                 usuario.setEmail(rst.getString(3));
                 usuario.setPassword(rst.getString(4));
