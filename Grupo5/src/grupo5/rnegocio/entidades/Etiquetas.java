@@ -3,51 +3,52 @@ package grupo5.rnegocio.entidades;
 import java.util.*;
 
 public class Etiquetas {
- private int id;
- private String nombre;
- private Date creado;
- private Date actualizado;
+ private int Etiqueta_Id;
+ private String Nombre;
+ private Date Creado;
+ private Date Actualizado;
 
     public Etiquetas() {
     }
 
-    public Etiquetas(int id, String nombre, Date creado, Date actualizado) {
-        this.id = id;
-        this.nombre = nombre;
-        this.creado = creado;
-        this.actualizado = actualizado;
+    public Etiquetas(int Etiqueta_Id, String Nombre, Date Creado, Date Actualizado) {
+        this.Etiqueta_Id = Etiqueta_Id;
+        this.Nombre = Nombre;
+        this.Creado = Creado;
+        this.Actualizado = Actualizado;
     }
 
-    public int getId() {
-        return id;
+    public int getEtiqueta_Id() {
+        return Etiqueta_Id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEtiqueta_Id(int Etiqueta_Id) {
+        this.Etiqueta_Id = Etiqueta_Id;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public Date getCreado() {
-        return creado;
+        return Creado;
     }
 
-    public void setCreado(Date creado) {
-        this.creado = creado;
+    public void setCreado(Date Creado) {
+        this.Creado = Creado;
     }
 
     public Date getActualizado() {
-        return actualizado;
+        return Actualizado;
     }
 
-    public void setActualizado(Date actualizado) {
-        this.actualizado = actualizado;
+    public void setActualizado(Date Actualizado) {
+        this.Actualizado = Actualizado;
     }
- 
+
+    
 }
