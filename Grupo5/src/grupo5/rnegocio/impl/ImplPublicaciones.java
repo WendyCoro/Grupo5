@@ -14,9 +14,9 @@ public class ImplPublicaciones implements IPublicaciones{
         int numFilasAfectadas=0;
         String sql="insert into Publicaciones values(?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, publicaciones.getId()));
-        lstPar.add(new Parametro(2, publicaciones.getUsuario().getId()));
-        lstPar.add(new Parametro(3, publicaciones.getNiveles().getId_Niveles()));
+        lstPar.add(new Parametro(1, publicaciones.getPublicaciones_Id()));
+        lstPar.add(new Parametro(2, publicaciones.getUsuario().getUsuario_Id()));
+        lstPar.add(new Parametro(3, publicaciones.getNiveles().getNiveles_Id()));
         lstPar.add(new Parametro(4, publicaciones.getTitulo()));
         lstPar.add(new Parametro(5, publicaciones.getContenido()));
         lstPar.add(new Parametro(6, publicaciones.getPublicacion()));
@@ -50,7 +50,7 @@ public class ImplPublicaciones implements IPublicaciones{
             ResultSet rst = con.ejecutarQuery(sql, null);
             while (rst.next()){
                 publicaciones = new Publicaciones();
-                publicaciones.setId(rst.getInt(1));
+                publicaciones.setPublicaciones_Id(rst.getInt(1));
                 //publicaciones.setUsuario(rst.getInt(2));
                 //pulicaciones.setNiveles(rst.getInt(3));
                 //publicaciones.setTitulo(rst.getInt(4));
