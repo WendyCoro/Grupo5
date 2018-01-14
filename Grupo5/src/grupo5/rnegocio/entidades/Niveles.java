@@ -4,53 +4,52 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Niveles {
-    private int id_Niveles;
-    private String nombre;
-    private Date creado;
-    private Date actualizado;
+    private int Niveles_Id;
+    private String Nombre;
+    private Date Creado;
+    private Date Actualizado;
 
     public Niveles() {
     }
 
-    public Niveles(int id_Niveles, String nombre, Date creado, Date actualizado) {
-        this.id_Niveles = id_Niveles;
-        this.nombre = nombre;
-        this.creado = creado;
-        this.actualizado = actualizado;
+    public Niveles(int Niveles_Id, String Nombre, Date Creado, Date Actualizado) {
+        this.Niveles_Id = Niveles_Id;
+        this.Nombre = Nombre;
+        this.Creado = Creado;
+        this.Actualizado = Actualizado;
     }
 
-    public int getId_Niveles() {
-        return id_Niveles;
+    public int getNiveles_Id() {
+        return Niveles_Id;
     }
 
-    public void setId_Niveles(int id_Niveles) {
-        this.id_Niveles = id_Niveles;
+    public void setNiveles_Id(int Niveles_Id) {
+        this.Niveles_Id = Niveles_Id;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public Date getCreado() {
-        return creado;
+        return Creado;
     }
 
-    public void setCreado(Date creado) {
-        this.creado = creado;
+    public void setCreado(Date Creado) {
+        this.Creado = Creado;
     }
 
     public Date getActualizado() {
-        return actualizado;
+        return Actualizado;
     }
 
-    public void setActualizado(Date actualizado) {
-        this.actualizado = actualizado;
+    public void setActualizado(Date Actualizado) {
+        this.Actualizado = Actualizado;
     }
 
-    
-    
+   
 }
