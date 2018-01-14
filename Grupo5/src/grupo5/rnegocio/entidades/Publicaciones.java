@@ -2,112 +2,112 @@
 package grupo5.rnegocio.entidades;
 import java. util.*;
 public class Publicaciones {
-    private int id;
-    private Usuario usuario ; 
-    private Niveles niveles;
-    private String titulo;
-    private String contenido;
-    private int publicacion ;
-    private int vistas;
-    private double votos;
-    private Date creado;
-    private Date actualizado;
-
-    public Publicaciones(int id, Usuario usuario, Niveles niveles, String titulo, String contenido, int publicacion, int vistas, double votos, Date creado, Date actualizado) {
-        this.id = id;
-        this.usuario = usuario;
-        this.niveles = niveles;
-        this.titulo = titulo;
-        this.contenido = contenido;
-        this.publicacion = publicacion;
-        this.vistas = vistas;
-        this.votos = votos;
-        this.creado = creado;
-        this.actualizado = actualizado;
-    }
+    private int Publicaciones_Id;
+    private Usuario Usuario ; 
+    private Niveles Niveles;
+    private String Titulo;
+    private String Contenido;
+    private int Publicacion ;
+    private int Vistas;
+    private double Votos;
+    private Date Creado;
+    private Date Actualizado;
 
     public Publicaciones() {
     }
 
-    public int getId() {
-        return id;
+    public Publicaciones(int Publicaciones_Id, Usuario Usuario, Niveles Niveles, String Titulo, String Contenido, int Publicacion, int Vistas, double Votos, Date Creado, Date Actualizado) {
+        this.Publicaciones_Id = Publicaciones_Id;
+        this.Usuario = Usuario;
+        this.Niveles = Niveles;
+        this.Titulo = Titulo;
+        this.Contenido = Contenido;
+        this.Publicacion = Publicacion;
+        this.Vistas = Vistas;
+        this.Votos = Votos;
+        this.Creado = Creado;
+        this.Actualizado = Actualizado;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getPublicaciones_Id() {
+        return Publicaciones_Id;
+    }
+
+    public void setPublicaciones_Id(int Publicaciones_Id) {
+        this.Publicaciones_Id = Publicaciones_Id;
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return Usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(Usuario Usuario) {
+        this.Usuario = Usuario;
     }
 
     public Niveles getNiveles() {
-        return niveles;
+        return Niveles;
     }
 
-    public void setNiveles(Niveles niveles) {
-        this.niveles = niveles;
+    public void setNiveles(Niveles Niveles) {
+        this.Niveles = Niveles;
     }
 
     public String getTitulo() {
-        return titulo;
+        return Titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitulo(String Titulo) {
+        this.Titulo = Titulo;
     }
 
     public String getContenido() {
-        return contenido;
+        return Contenido;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setContenido(String Contenido) {
+        this.Contenido = Contenido;
     }
 
     public int getPublicacion() {
-        return publicacion;
+        return Publicacion;
     }
 
-    public void setPublicacion(int publicacion) {
-        this.publicacion = publicacion;
+    public void setPublicacion(int Publicacion) {
+        this.Publicacion = Publicacion;
     }
 
     public int getVistas() {
-        return vistas;
+        return Vistas;
     }
 
-    public void setVistas(int vistas) {
-        this.vistas = vistas;
+    public void setVistas(int Vistas) {
+        this.Vistas = Vistas;
     }
 
     public double getVotos() {
-        return votos;
+        return Votos;
     }
 
-    public void setVotos(double votos) {
-        this.votos = votos;
+    public void setVotos(double Votos) {
+        this.Votos = Votos;
     }
 
     public Date getCreado() {
-        return creado;
+        return Creado;
     }
 
-    public void setCreado(Date creado) {
-        this.creado = creado;
+    public void setCreado(Date Creado) {
+        this.Creado = Creado;
     }
 
     public Date getActualizado() {
-        return actualizado;
+        return Actualizado;
     }
 
-    public void setActualizado(Date actualizado) {
-        this.actualizado = actualizado;
+    public void setActualizado(Date Actualizado) {
+        this.Actualizado = Actualizado;
     }
-    
+
     
 }
