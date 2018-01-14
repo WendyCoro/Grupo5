@@ -5,7 +5,7 @@
  */
 package grupo5.rnegocio.dao;
 
-import grupo5.rnegocio.entidades.Etiquetas_publicaciones;
+import grupo5.rnegocio.entidades.Etiquetas_Publicaciones;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IEtiquetas_publicaciones {
-    public int insertar(Etiquetas_publicaciones etiquetas_publicaciones) throws Exception;
-    public List<Etiquetas_publicaciones> obtener() throws Exception;
-    public Etiquetas_publicaciones obtener(int codigo) throws Exception;
+    public int insertar(Etiquetas_Publicaciones etiquetas_publicaciones) throws Exception;
+    public List<Etiquetas_Publicaciones> obtener() throws Exception;
+    public Etiquetas_Publicaciones obtener(int codigo) throws Exception;
 }
