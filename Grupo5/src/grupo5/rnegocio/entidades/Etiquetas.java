@@ -3,7 +3,7 @@ package grupo5.rnegocio.entidades;
 import java.util.*;
 
 public class Etiquetas {
- private int Etiqueta_Id;
+ private long Etiqueta_Id;
  private String Nombre;
  private Date Creado;
  private Date Actualizado;
@@ -11,18 +11,18 @@ public class Etiquetas {
     public Etiquetas() {
     }
 
-    public Etiquetas(int Etiqueta_Id, String Nombre, Date Creado, Date Actualizado) {
+    public Etiquetas(long Etiqueta_Id, String Nombre, Date Creado, Date Actualizado) {
         this.Etiqueta_Id = Etiqueta_Id;
         this.Nombre = Nombre;
         this.Creado = Creado;
         this.Actualizado = Actualizado;
     }
 
-    public int getEtiqueta_Id() {
+    public long getEtiqueta_Id() {
         return Etiqueta_Id;
     }
 
-    public void setEtiqueta_Id(int Etiqueta_Id) {
+    public void setEtiqueta_Id(long Etiqueta_Id) {
         this.Etiqueta_Id = Etiqueta_Id;
     }
 
@@ -50,5 +50,5 @@ public class Etiquetas {
         this.Actualizado = Actualizado;
     }
 
-    
+        
 }
