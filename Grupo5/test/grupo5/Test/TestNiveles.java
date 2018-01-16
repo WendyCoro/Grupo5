@@ -15,7 +15,7 @@ public class TestNiveles {
         INiveles nivelDao=new ImplNiveles();
 //        //TEST INSERTAR
         int filas=0;
-        Niveles nuevoNivel=new Niveles(222, "jhon", new Date(), new Date());
+        Niveles nuevoNivel=new Niveles(123, "diego", new Date(), new Date());
         try {
             filas=nivelDao.insertar(nuevoNivel);
             System.out.println("filas Insertadas:"+filas+"\n");

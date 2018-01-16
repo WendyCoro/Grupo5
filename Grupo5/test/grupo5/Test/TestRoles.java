@@ -15,7 +15,7 @@ public class TestRoles {
         IRoles rolDao=new ImplRoles();
 //        //TEST INSERTAR
         int filas=0;
-        Roles nuevoRol=new Roles(654, "jhon", new Date(), new Date());
+        Roles nuevoRol=new Roles(654, "diego", new Date(), new Date());
         try {
             filas=rolDao.insertar(nuevoRol);
             System.out.println("filas Insertadas:"+filas+"\n");

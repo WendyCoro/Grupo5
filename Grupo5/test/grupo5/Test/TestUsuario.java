@@ -15,8 +15,8 @@ public class TestUsuario {
         IUsuario usuarioDao = new ImplUsuario();
         //TEST INSERTAR
         int filas = 0;
-        Roles nRol = new Roles(123, "Jhon", new Date(), new Date());
-        Usuario user = new Usuario(973, "Mishell", "Viteri", "ulha", nRol, new Date(), new Date());
+        Roles nRol = new Roles(123, "Diego", new Date(), new Date());
+        Usuario user = new Usuario(973, "Angel", "Ramos", "abcd", nRol, new Date(), new Date());
         try {
             filas = usuarioDao.insertar(user);
             System.out.println("filas Insertadas:" + filas);

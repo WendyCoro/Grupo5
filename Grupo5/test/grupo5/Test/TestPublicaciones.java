@@ -15,10 +15,10 @@ public class TestPublicaciones {
         IPublicaciones publicDao = new ImplPublicaciones();
         //TEST INSERTAR
         int filas = 0;
-        Roles nRol = new Roles(123, "Jhon", new Date(), new Date());
-        Usuario user = new Usuario(973, "Mishell", "Viteri", "ulha", nRol, new Date(), new Date());
-        Niveles nuevoNivel=new Niveles(222, "jhon", new Date(), new Date());
-        Publicaciones pulblicar=new Publicaciones(2345, user, nuevoNivel, "123532", "ljsr", 15, 35, 7.5, new Date(), new Date());
+        Roles nRol = new Roles(123, "Diego", new Date(), new Date());
+        Usuario user = new Usuario(973, "Angel", "Ramos", "abcd", nRol, new Date(), new Date());
+        Niveles nuevoNivel=new Niveles(222, "diego", new Date(), new Date());
+        Publicaciones pulblicar=new Publicaciones(2345, user, nuevoNivel, "123532", "abcd", 15, 35, 7.5, new Date(), new Date());
         try {
             filas = publicDao.insertar(pulblicar);
             System.out.println("filas Insertadas:" + filas);

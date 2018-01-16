@@ -15,7 +15,7 @@ public class TestEtiquetas {
           IEtiquetas etiquetaDao=new ImplEtiquetas();
 //        //TEST INSERTAR
         int filas=0;
-        Etiquetas nuevoEtiqueta=new Etiquetas(1719, "sebas", new Date(), new Date());
+        Etiquetas nuevoEtiqueta=new Etiquetas(1719, "diego", new Date(), new Date());
         try {
             filas=etiquetaDao.insertar(nuevoEtiqueta);
             System.out.println("filas Insertadas:"+filas+"\n");

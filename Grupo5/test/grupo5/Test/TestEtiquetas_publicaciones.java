@@ -16,11 +16,11 @@ public class TestEtiquetas_publicaciones {
         IEtiquetas_publicaciones etiqPublicDao = new ImplEtiquetas_publicaciones();
         //TEST INSERTAR
         int filas = 0;
-        Etiquetas etiq=new Etiquetas(864, "sebas", new Date(), new Date());
-        Roles nRol = new Roles(123, "Jhon", new Date(), new Date());
-        Usuario user = new Usuario(973, "Mishell", "Viteri", "ulha", nRol, new Date(), new Date());
-        Niveles nuevoNivel=new Niveles(222, "jhon", new Date(), new Date());
-        Publicaciones pulblicar=new Publicaciones(349, user, nuevoNivel, "123532", "ljsr", 15, 35, 7.5, new Date(), new Date());
+        Etiquetas etiq=new Etiquetas(864, "Diego", new Date(), new Date());
+        Roles nRol = new Roles(123, "Wendy", new Date(), new Date());
+        Usuario user = new Usuario(973, "Angel", "Ramos", "ulha", nRol, new Date(), new Date());
+        Niveles nuevoNivel=new Niveles(222, "Daniel", new Date(), new Date());
+        Publicaciones pulblicar=new Publicaciones(349, user, nuevoNivel, "123532", "abcd", 15, 35, 7.5, new Date(), new Date());
         Etiquetas_publicaciones nEtiqPublic=new Etiquetas_publicaciones(etiq, pulblicar, new Date(), new Date());
         try {
             filas = etiqPublicDao.insertar(nEtiqPublic);
