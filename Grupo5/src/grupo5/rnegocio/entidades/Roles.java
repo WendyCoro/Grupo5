@@ -2,7 +2,7 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Roles {
-    private int Roles_Id;
+    private long Roles_Id;
     private String Nombre;
     private Date Creado;
     private Date Actualizado;
@@ -10,18 +10,18 @@ public class Roles {
     public Roles() {
     }
 
-    public Roles(int Roles_Id, String Nombre, Date Creado, Date Actualizado) {
+    public Roles(long Roles_Id, String Nombre, Date Creado, Date Actualizado) {
         this.Roles_Id = Roles_Id;
         this.Nombre = Nombre;
         this.Creado = Creado;
         this.Actualizado = Actualizado;
     }
 
-    public int getRoles_Id() {
+    public long getRoles_Id() {
         return Roles_Id;
     }
 
-    public void setRoles_Id(int Roles_Id) {
+    public void setRoles_Id(long Roles_Id) {
         this.Roles_Id = Roles_Id;
     }
 
@@ -49,6 +49,7 @@ public class Roles {
         this.Actualizado = Actualizado;
     }
 
+    
     
     
 }
