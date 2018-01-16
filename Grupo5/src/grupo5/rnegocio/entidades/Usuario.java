@@ -2,7 +2,7 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Usuario {
-    private int Usuario_Id;
+    private long  Usuario_Id;
     private String Nombre;
     private String Email;
     private String Password;
@@ -13,7 +13,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int Usuario_Id, String Nombre, String Email, String Password, Roles Roles, Date Creado, Date Actualizado) {
+    public Usuario(long Usuario_Id, String Nombre, String Email, String Password, Roles Roles, Date Creado, Date Actualizado) {
         this.Usuario_Id = Usuario_Id;
         this.Nombre = Nombre;
         this.Email = Email;
@@ -23,11 +23,11 @@ public class Usuario {
         this.Actualizado = Actualizado;
     }
 
-    public int getUsuario_Id() {
+    public long getUsuario_Id() {
         return Usuario_Id;
     }
 
-    public void setUsuario_Id(int Usuario_Id) {
+    public void setUsuario_Id(long Usuario_Id) {
         this.Usuario_Id = Usuario_Id;
     }
 
@@ -78,7 +78,7 @@ public class Usuario {
     public void setActualizado(Date Actualizado) {
         this.Actualizado = Actualizado;
     }
+
     
-   
 }
            
