@@ -6,6 +6,8 @@
 package grupo5.rnegocio.dao;
 
 import grupo5.rnegocio.entidades.Niveles;
+import grupo5.rnegocio.entidades.Niveles;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +15,10 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface INiveles {
-    public int insertar(Niveles niveles) throws Exception;
-    public List<Niveles> obtener() throws Exception;
-    public Niveles obtener(int codigo) throws Exception;
+     public int insertar(Niveles niveles) throws Exception;
+    public int modificar (Niveles niveles) throws Exception ;
+    public int eliminar (Niveles niveles) throws Exception ;
+    public Niveles obtener(long Niveles_Id) throws Exception;
+    public ArrayList<Niveles> obtener() throws Exception;
+    
 }
