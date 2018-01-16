@@ -2,21 +2,21 @@
 package grupo5.rnegocio.entidades;
 import java. util.*;
 public class Publicaciones {
-    private int Publicaciones_Id;
+    private long Publicaciones_Id;
     private Usuario Usuario ; 
     private Niveles Niveles;
     private String Titulo;
     private String Contenido;
     private int Publicacion ;
     private int Vistas;
-    private double Votos;
+    private Double Votos;
     private Date Creado;
     private Date Actualizado;
 
     public Publicaciones() {
     }
 
-    public Publicaciones(int Publicaciones_Id, Usuario Usuario, Niveles Niveles, String Titulo, String Contenido, int Publicacion, int Vistas, double Votos, Date Creado, Date Actualizado) {
+    public Publicaciones(long Publicaciones_Id, Usuario Usuario, Niveles Niveles, String Titulo, String Contenido, int Publicacion, int Vistas, Double Votos, Date Creado, Date Actualizado) {
         this.Publicaciones_Id = Publicaciones_Id;
         this.Usuario = Usuario;
         this.Niveles = Niveles;
@@ -29,11 +29,11 @@ public class Publicaciones {
         this.Actualizado = Actualizado;
     }
 
-    public int getPublicaciones_Id() {
+    public long getPublicaciones_Id() {
         return Publicaciones_Id;
     }
 
-    public void setPublicaciones_Id(int Publicaciones_Id) {
+    public void setPublicaciones_Id(long Publicaciones_Id) {
         this.Publicaciones_Id = Publicaciones_Id;
     }
 
@@ -85,11 +85,11 @@ public class Publicaciones {
         this.Vistas = Vistas;
     }
 
-    public double getVotos() {
+    public Double getVotos() {
         return Votos;
     }
 
-    public void setVotos(double Votos) {
+    public void setVotos(Double Votos) {
         this.Votos = Votos;
     }
 
@@ -109,5 +109,5 @@ public class Publicaciones {
         this.Actualizado = Actualizado;
     }
 
-    
+        
 }
