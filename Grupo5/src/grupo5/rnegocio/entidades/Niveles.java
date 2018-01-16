@@ -4,7 +4,7 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Niveles {
-    private int Niveles_Id;
+    private long Niveles_Id;
     private String Nombre;
     private Date Creado;
     private Date Actualizado;
@@ -12,18 +12,18 @@ public class Niveles {
     public Niveles() {
     }
 
-    public Niveles(int Niveles_Id, String Nombre, Date Creado, Date Actualizado) {
+    public Niveles(long Niveles_Id, String Nombre, Date Creado, Date Actualizado) {
         this.Niveles_Id = Niveles_Id;
         this.Nombre = Nombre;
         this.Creado = Creado;
         this.Actualizado = Actualizado;
     }
 
-    public int getNiveles_Id() {
+    public long getNiveles_Id() {
         return Niveles_Id;
     }
 
-    public void setNiveles_Id(int Niveles_Id) {
+    public void setNiveles_Id(long Niveles_Id) {
         this.Niveles_Id = Niveles_Id;
     }
 
@@ -51,5 +51,6 @@ public class Niveles {
         this.Actualizado = Actualizado;
     }
 
+    
    
 }
