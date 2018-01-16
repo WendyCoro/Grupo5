@@ -27,7 +27,7 @@ public class TestUsuario {
         Usuario usuario = new Usuario();
         try {
             usuario = usuarioDao.obtener(874);
-            System.out.println(usuario.getUsuario_Id() + "    " + usuario.getNombre() + "    " + usuario.getEmail() + "    " + usuario.getPassoword() + "    " + usuario.getRoles().getRoles_Id() + "    " + usuario.getCreado() + "    " + usuario.getActualizado() + "\n\n");
+            System.out.println(usuario.getUsuario_Id() + "    " + usuario.getNombre() + "    " + usuario.getEmail() + "    " + usuario.getPassword() + "    " + usuario.getRoles().getRoles_Id() + "    " + usuario.getCreado() + "    " + usuario.getActualizado() + "\n\n");
         } catch (Exception e) {
         }
         assertEquals(usuario != null, true);
@@ -36,7 +36,7 @@ public class TestUsuario {
         try {
             usuarios = usuarioDao.obtener();
             for (Usuario nUsuario : usuarios) {
-                System.out.println(nUsuario.getUsuario_Id() + "    " + nUsuario.getNombre() + "    " + nUsuario.getEmail() + "    " + nUsuario.getPassoword() + "    " + nUsuario.getRoles().getRoles_Id() + "    " + nUsuario.getCreado() + "    " + nUsuario.getActualizado());
+                System.out.println(nUsuario.getUsuario_Id() + "    " + nUsuario.getNombre() + "    " + nUsuario.getEmail() + "    " + nUsuario.getPassword() + "    " + nUsuario.getRoles().getRoles_Id() + "    " + nUsuario.getCreado() + "    " + nUsuario.getActualizado());
             }
         } catch (Exception e) {
         }

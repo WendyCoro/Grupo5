@@ -29,7 +29,7 @@ public class TestPublicaciones {
         Publicaciones publicacion = new Publicaciones();
         try {
             publicacion = publicDao.obtener(2345);
-            System.out.println(publicacion.getPublicaciones_Id() + "    " + publicacion.getUsuario().getUsuario_Id()+ "    " + publicacion.getNiveles().getNiveles_Id()+ "    " + publicacion.getTitulo()+ "    " + publicacion.getContenido()+ "    " + publicacion.getPublicado()+ "    " + publicacion.getVistas()+ "    " + publicacion.getCreado()+ "    " + publicacion.getActualizado()+ "    " + publicacion.getVotos()+ "\n\n");
+            System.out.println(publicacion.getPublicaciones_Id() + "    " + publicacion.getUsuario().getUsuario_Id()+ "    " + publicacion.getNiveles().getNiveles_Id()+ "    " + publicacion.getTitulo()+ "    " + publicacion.getContenido()+ "    " + publicacion.getPublicacion()+ "    " + publicacion.getVistas()+ "    " + publicacion.getCreado()+ "    " + publicacion.getActualizado()+ "    " + publicacion.getVotos()+ "\n\n");
         } catch (Exception e) {
         }
         assertEquals(publicacion != null, true);
@@ -38,7 +38,7 @@ public class TestPublicaciones {
         try {
             publicaciones = publicDao.obtener();
             for (Publicaciones nPublicacion : publicaciones) {
-                System.out.println(nPublicacion.getPublicaciones_Id() + "    " + nPublicacion.getUsuario().getUsuario_Id()+ "    " + nPublicacion.getNiveles().getNiveles_Id()+ "    " + nPublicacion.getTitulo()+ "    " + nPublicacion.getContenido()+ "    " + nPublicacion.getPublicado()+ "    " + nPublicacion.getVistas()+ "    " + nPublicacion.getCreado()+ "    " + nPublicacion.getActualizado()+ "    " + nPublicacion.getVotos());
+                System.out.println(nPublicacion.getPublicaciones_Id() + "    " + nPublicacion.getUsuario().getUsuario_Id()+ "    " + nPublicacion.getNiveles().getNiveles_Id()+ "    " + nPublicacion.getTitulo()+ "    " + nPublicacion.getContenido()+ "    " + nPublicacion.getPublicacion()+ "    " + nPublicacion.getVistas()+ "    " + nPublicacion.getCreado()+ "    " + nPublicacion.getActualizado()+ "    " + nPublicacion.getVotos());
             }
         } catch (Exception e) {
             System.out.println("error: "+e.getMessage());
