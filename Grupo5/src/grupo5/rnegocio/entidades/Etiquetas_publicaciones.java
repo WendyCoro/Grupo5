@@ -2,14 +2,14 @@
 package grupo5.rnegocio.entidades;
 import java.util.*;
 public class Etiquetas_publicaciones {
-    private int etiqueta_id;
-    private int publicacion_id;
+    private Etiquetas etiquetas;
+    private Publicaciones publicaciones;
     private Date creado;
     private Date actualizado;
 
-    public Etiquetas_publicaciones(int etiqueta_id, int publicacion_id, Date creado, Date actualizado) {
-        this.etiqueta_id = etiqueta_id;
-        this.publicacion_id = publicacion_id;
+    public Etiquetas_publicaciones(Etiquetas etiquetas, Publicaciones publicaciones, Date creado, Date actualizado) {
+        this.etiquetas = etiquetas;
+        this.publicaciones = publicaciones;
         this.creado = creado;
         this.actualizado = actualizado;
     }
@@ -17,20 +17,20 @@ public class Etiquetas_publicaciones {
     public Etiquetas_publicaciones() {
     }
 
-    public int getEtiqueta_id() {
-        return etiqueta_id;
+    public Etiquetas getEtiquetas() {
+        return etiquetas;
     }
 
-    public void setEtiqueta_id(int etiqueta_id) {
-        this.etiqueta_id = etiqueta_id;
+    public void setEtiquetas(Etiquetas etiquetas) {
+        this.etiquetas = etiquetas;
     }
 
-    public int getPublicacion_id() {
-        return publicacion_id;
+    public Publicaciones getPublicaciones() {
+        return publicaciones;
     }
 
-    public void setPublicacion_id(int publicacion_id) {
-        this.publicacion_id = publicacion_id;
+    public void setPublicaciones(Publicaciones publicaciones) {
+        this.publicaciones = publicaciones;
     }
 
     public Date getCreado() {
@@ -48,4 +48,7 @@ public class Etiquetas_publicaciones {
     public void setActualizado(Date actualizado) {
         this.actualizado = actualizado;
     }
+    
+
+  
 }
