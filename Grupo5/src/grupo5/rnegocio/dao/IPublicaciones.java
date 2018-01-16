@@ -6,6 +6,8 @@
 package grupo5.rnegocio.dao;
 
 import grupo5.rnegocio.entidades.Publicaciones;
+import grupo5.rnegocio.entidades.Publicaciones;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +16,8 @@ import java.util.List;
  */
 public interface IPublicaciones {
     public int insertar(Publicaciones publicaciones) throws Exception;
-    public List<Publicaciones> obtener() throws Exception;
-    public Publicaciones obtener(int codigo) throws Exception;
+    public int modificar (Publicaciones publicaciones) throws Exception ;
+    public int eliminar (Publicaciones publicaciones) throws Exception ;
+    public Publicaciones obtener(long Publicaciones_Id) throws Exception;
+    public ArrayList<Publicaciones> obtener() throws Exception;
 }

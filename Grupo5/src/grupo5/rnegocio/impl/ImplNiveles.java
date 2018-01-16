@@ -131,17 +131,17 @@ public class ImplNiveles implements INiveles{
         String sql="SELECT Niveles_Id,Nombre, Creado, Actuaizado FROM Niveles;";
         Conexion con = null;
         try{
-            Niveles niveles = null;
+            Niveles lisniveles = null;
             con = new Conexion();
             con.conectar();
             ResultSet rst = con.ejecutarQuery(sql, null);
             while (rst.next()){
-                niveles = new Niveles();
-                niveles.setNiveles_Id(rst.getInt(1));
-                niveles.setNombre(rst.getString(2));
-                niveles.setCreado(rst.getDate(3));
-                niveles.setActualizado(rst.getDate(4));
-                lista.add(niveles);
+                lisniveles = new Niveles();
+                lisniveles.setNiveles_Id(rst.getInt(1));
+                lisniveles.setNombre(rst.getString(2));
+                lisniveles.setCreado(rst.getDate(3));
+                lisniveles.setActualizado(rst.getDate(4));
+                lista.add(lisniveles);
            }
         }catch (Exception e) {
             throw e;

@@ -6,6 +6,8 @@
 package grupo5.rnegocio.dao;
 
 import grupo5.rnegocio.entidades.Roles;
+import grupo5.rnegocio.entidades.Roles;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +16,9 @@ import java.util.List;
  */
 public interface IRoles {
     public int insertar(Roles roles) throws Exception;
-    public List<Roles> obtener() throws Exception;
-    public Roles obtener(int codigo) throws Exception;
+    public int modificar (Roles roles) throws Exception ;
+    public int eliminar (Roles roles) throws Exception ;
+    public Roles obtener(long Roless_Id) throws Exception;
+    public ArrayList<Roles> obtener() throws Exception;
+
 }

@@ -56,10 +56,10 @@ public class ImplEtiquetas implements IEtiquetas{
         }else {
             lstPar.add (new Parametro(3, etiquetas.getCreado()));
         }
-        if (etiquetas.getActualizado() instanceof java.sql.Date){
+        if (etiquetas.getCreado() instanceof java.sql.Date){
             lstPar.add (new Parametro(4,new java.sql.Date(((java.util.Date) etiquetas.getActualizado()).getTime())));
         }else {
-            lstPar.add (new Parametro(4, etiquetas.getCreado()));
+            lstPar.add (new Parametro(4, etiquetas.getActualizado()));
         }
         Conexion con = null;
         try{

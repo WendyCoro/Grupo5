@@ -22,10 +22,10 @@ public class ImplEtiquetas_publicaciones implements IEtiquetas_publicaciones{
         }else {
             lstPar.add (new Parametro(3, etiquetas_publicaciones.getCreado()));
         }
-        if (etiquetas_publicaciones.getActualizado() instanceof java.sql.Date){
+        if (etiquetas_publicaciones.getCreado() instanceof java.sql.Date){
             lstPar.add (new Parametro(4,new java.sql.Date(((java.util.Date) etiquetas_publicaciones.getActualizado()).getTime())));
         }else {
-            lstPar.add (new Parametro(4, etiquetas_publicaciones.getCreado()));
+            lstPar.add (new Parametro(4, etiquetas_publicaciones.getActualizado()));
         }
         Conexion con = null;
         try{
@@ -55,10 +55,10 @@ public class ImplEtiquetas_publicaciones implements IEtiquetas_publicaciones{
         }else {
             lstPar.add (new Parametro(3, etiquetas_publicaciones.getCreado()));
         }
-        if (etiquetas_publicaciones.getActualizado() instanceof java.sql.Date){
+        if (etiquetas_publicaciones.getCreado() instanceof java.sql.Date){
             lstPar.add (new Parametro(4,new java.sql.Date(((java.util.Date) etiquetas_publicaciones.getActualizado()).getTime())));
         }else {
-            lstPar.add (new Parametro(4, etiquetas_publicaciones.getCreado()));
+            lstPar.add (new Parametro(4, etiquetas_publicaciones.getActualizado()));
         }
        lstPar.add(new Parametro(5, etiquetas_publicaciones.getEtiquetas().getEtiqueta_Id()));
        lstPar.add(new Parametro(6, etiquetas_publicaciones.getPublicaciones().getPublicaciones_Id()));
@@ -126,7 +126,7 @@ public class ImplEtiquetas_publicaciones implements IEtiquetas_publicaciones{
             eti=etiDao.obtener(rst.getLong(1));
             lstetiquetap.setEtiquetas(eti);
             pub = new Publicaciones();
-            //pub = pubDao.obtener(rst.getLong(2));
+            pub = pubDao.obtener(rst.getLong(2));
             lstetiquetap.setPublicaciones(pub);
             lstetiquetap.setCreado(rst.getDate(3));
             lstetiquetap.setActualizado(rst.getDate(4));    
@@ -164,7 +164,7 @@ public class ImplEtiquetas_publicaciones implements IEtiquetas_publicaciones{
             eti=etiDao.obtener(rst.getLong(1));
             stetiquetap.setEtiquetas(eti);
             pub = new Publicaciones();
-            //pub = pubDao.obtener(rst.getLong(2));
+            pub = pubDao.obtener(rst.getLong(2));
             stetiquetap.setPublicaciones(pub);
             stetiquetap.setCreado(rst.getDate(3));
             stetiquetap.setActualizado(rst.getDate(4)); 
