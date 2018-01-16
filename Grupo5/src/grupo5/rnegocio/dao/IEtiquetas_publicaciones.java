@@ -5,7 +5,9 @@
  */
 package grupo5.rnegocio.dao;
 
-import grupo5.rnegocio.entidades.Etiquetas_Publicaciones;
+import grupo5.rnegocio.entidades.Etiquetas.*;
+import grupo5.rnegocio.entidades.Etiquetas_publicaciones;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +15,9 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IEtiquetas_publicaciones {
-    public int insertar(Etiquetas_Publicaciones etiquetas_publicaciones) throws Exception;
-    public List<Etiquetas_Publicaciones> obtener() throws Exception;
-    public Etiquetas_Publicaciones obtener(int codigo) throws Exception;
+    public int insertar(Etiquetas_publicaciones etiquetas_publicaciones) throws Exception;
+    public int modificar (Etiquetas_publicaciones etiquetas_publicaciones) throws Exception ;
+    public int eliminar (Etiquetas_publicaciones etiquetas_publicaciones) throws Exception ;
+    public Etiquetas_publicaciones obtener(long Etiqueta_Id ,long Publicacion_Id) throws Exception;
+    public ArrayList<Etiquetas_publicaciones> obtener() throws Exception;
 }
