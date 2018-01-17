@@ -14,7 +14,7 @@ import grupo5.rnegocio.entidades.Roles;
 import grupo5.rnegocio.entidades.Usuarios;
 import grupo5.rnegocio.impl.PublicacionesImpl;
 import grupo5.rnegocio.impl.RolesImpl;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,40 +33,40 @@ public class RolesTest {
         IRoles rolesDao = new RolesImpl();
         // TEST INSERTAR
 ////
-////            int filas = 0;
-////            Roles rol=new Roles(1, "Michu", new java.util.Date(), new java.util.Date());
-////            try {
-////                filas = rolesDao.insertar(rol);
-////                System.out.println("Ingreso de " + filas + " Filas Correctas");
-////            } catch (Exception e) {
-////                System.out.println("Error: " + e.getMessage());
-////            }
-////            assertEquals(filas > 0, true);
-////
+            int filas = 0;
+            Roles rol=new Roles(4, "Alex", new java.util.Date(), new java.util.Date());
+            try {
+                filas = rolesDao.insertar(rol);
+                System.out.println("Ingreso de " + filas + " Filas Correctas");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            assertEquals(filas > 0, true);
+
 ////          ///  TEST OBTENER POR CODIGO
 ////        
 //            
         Roles roless=new Roles();
         
         try {
-            roless=rolesDao.obtener(1);
+            roless=rolesDao.obtener(3);
             System.out.println("            "+roless.getId_r()+"    "+roless.getNombre()+"    "+roless.getCreado()+"    "+roless.getActualizado());
         } catch (Exception e) {
         }
         
           
-//        //*------------------------------------------------------------------------------------------------------------------------------------*
-////////        
-//            //TEST LISTADO
-//        ArrayList<Roles> roless = new ArrayList<>();
-//        try {
-//            roless = rolesDao.obtener();
-//            for (Roles rolt : roless) {
-//                System.out.println(rolt.getId_r() + " " + rolt.getNombre() + " " + rolt.getCreado() + " " + rolt.getActualizado());
-//            }
-//        } catch (Exception e) {
-//        }
-//        assertEquals(roless != null, true);
-    }
     
+//            //TEST LISTADO
+        ArrayList <Roles> listRoles = new ArrayList<>();
+        try {
+            listRoles = rolesDao.obtener();
+            for (Roles rolt : listRoles) {
+                System.out.println(rolt.getId_r() + " " + rolt.getNombre() + " " + rolt.getCreado() + " " + rolt.getActualizado());
+            }
+        } catch (Exception e) {
+        }
+        assertEquals(listRoles != null, true);
+    }
 }
+    
+

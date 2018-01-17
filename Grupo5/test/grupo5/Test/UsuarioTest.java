@@ -29,30 +29,30 @@ public class UsuarioTest {
         IUsuarios usDao = new UsuariosImpl();
         //// test insertat
 ////        
-////        int filas=0;
-////        
-////        Roles rol=new Roles(1, "Wendy", new java.util.Date(), new java.util.Date());
-////        Usuarios user=new Usuarios(1, "Wendy", "mishell@gmail.com", "12345", rol, new java.util.Date(), new java.util.Date());
-////        
-////           try {
-////            filas=usDao.insertar(user);
-////            System.out.println("Filas insertadas: "+filas);
-////        } catch (Exception e) {
-////              System.out.println("Error: " + e.getMessage());
-////        }
-////        assertEquals(filas>0, true);
+        int filas=0;
+        
+        Roles rol=new Roles(1, "Wendy", new java.util.Date(), new java.util.Date());
+        Usuarios user=new Usuarios(1, "Wendy", "dayan_p2010@hotmai.com", "3456", rol, new java.util.Date(), new java.util.Date());
+        
+           try {
+            filas=usDao.insertar(user);
+            System.out.println("Filas insertadas: "+filas);
+        } catch (Exception e) {
+              System.out.println("Error: " + e.getMessage());
+        }
+        assertEquals(filas>0, true);
 ////        
         
         ////test codigo
 //        
-//        Usuarios user=new Usuarios();
-//        try {
-//            user=usDao.obtener(1);
-//            System.out.println(user.getId_u()+" "+user.getNombre()+" "+user.getEmail()+" "+user.getPasword()+" "+user.getRoles().getId_r()+" "+user.getCreado()+" "+user.getActualizado());
-//        } catch (Exception e) {
-//            System.out.println("error: "+e.getMessage());
-//        }
-//       assertEquals(user != null, true);
+        Usuarios use=new Usuarios();
+        try {
+            use=usDao.obtener(1);
+            System.out.println(use.getId_u()+" "+use.getNombre()+" "+use.getEmail()+" "+use.getPasword()+" "+use.getRoles().getId_r()+" "+use.getCreado()+" "+use.getActualizado());
+        } catch (Exception e) {
+            System.out.println("error: "+e.getMessage());
+        }
+       assertEquals(use != null, true);
 
 
 //

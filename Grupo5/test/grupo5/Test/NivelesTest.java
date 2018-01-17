@@ -30,26 +30,25 @@ public class NivelesTest {
         INiveles nivelesDao = new NivelesImpl();
             // TEST INSERTAR
 
-//            int filas = 0;
-//            Niveles nivel=new Niveles(1, "Michu", new java.util.Date(), new java.util.Date());
-//            try {
-//                filas = nivelesDao.insertar(nivel);
-//                System.out.println("Ingreso de " + filas + " Filas Correctas");
-//            } catch (Exception e) {
-//                System.out.println("Error: " + e.getMessage());
-//            }
-//            assertEquals(filas > 0, true);
+            int filas = 0;
+            Niveles nivel=new Niveles(4, "Wen", new java.util.Date(), new java.util.Date());
+            try {
+                filas = nivelesDao.insertar(nivel);
+                System.out.println("Ingreso de " + filas + " Filas Correctas");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            assertEquals(filas > 0, true);
 //
 //            //TEST OBTENER POR CODIGO
 ////        
-//        Niveles niveles=new Niveles();
-//        try {
-//            niveles=nivelesDao.obtener(1);
-//            System.out.println("            "+niveles.getId_n()+"    "+niveles.getNombre()+"    "+niveles.getCreado()+"    "+niveles.getActualizado());
-//        } catch (Exception e) {
-//        }
-     //  *------------------------------------------------------------------------------------------------------------------------------------*
-        
+        Niveles niveles=new Niveles();
+        try {
+            niveles=nivelesDao.obtener(1);
+            System.out.println("            "+niveles.getId_n()+"    "+niveles.getNombre()+"    "+niveles.getCreado()+"    "+niveles.getActualizado());
+        } catch (Exception e) {
+        }
+     
 //            //TEST LISTADO
             ArrayList<Niveles> niveless = new ArrayList<>();
             try {
