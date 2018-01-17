@@ -12,34 +12,31 @@ public class TestRoles {
     }
     @Test
     public void testGeneral() {
-        IRoles rolDao=new ImplRoles();
-//        //TEST INSERTAR
-        int filas=0;
-        Roles nuevoRol=new Roles(654, "diego", new Date(), new Date());
-        try {
-            filas=rolDao.insertar(nuevoRol);
-            System.out.println("filas Insertadas:"+filas+"\n");
-        } catch (Exception e) {
+         //              INSERTAR
+        int filasAfectadas =0;
+        IRoles rolDao = new ImplRoles();
+        Roles rol = new Roles(1,"Administrador2",new Date(),new Date());
+        try{
+            filasAfectadas = rolDao.insertar(rol);
+            System.out.println("Rol ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas>0, true);
-//        //TEST OBTENER POR CODIGO
-        Roles role=new Roles();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE ROLES
+        List<Roles> lista = new ArrayList<>();
         try {
-            role=rolDao.obtener(2313);
-            System.out.println(role.getRoles_Id()+"    "+role.getNombre()+"    "+role.getCreado()+"    "+role.getActualizado()+"\n");
-        } catch (Exception e) {
-        }
-//        //TEST LISTADO
-        ArrayList<Roles> roles=new ArrayList<>();
-        try {
-            roles=rolDao.obtener();
-            for(Roles rol:roles){
-                System.out.println(rol.getRoles_Id()+" "+rol.getNombre()+" "+rol.getCreado()+" "+rol.getActualizado());
+            lista = rolDao.obtener();
+            for (Roles c:lista){
+                System.out.println("Id_rol :"+c.getRoles_Id());
+                System.out.println("Nombre :"+c.getNombre());
+                System.out.println("Fecha de creacion :"+c.getCreado());
+            System.out.println("Fecha de actualizacion :"+c.getActualizado());
             }
         } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(roles.size()>0);
+        assertTrue(lista.size()>0);
     }
-}
-    
 
+}

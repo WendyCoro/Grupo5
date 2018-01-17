@@ -6,46 +6,44 @@ import grupo5.rnegocio.impl.*;
 import org.junit.Test;
 import java.util.*;
 import org.junit.Test;
-import org.junit.Test;
 import static org.junit.Assert.*;
 public class TestEtiquetas_publicaciones {
     public TestEtiquetas_publicaciones() {
     }
     @Test
-    public void testGeneral() {
-        IEtiquetas_publicaciones etiqPublicDao = new ImplEtiquetas_publicaciones();
-        //TEST INSERTAR
-        int filas = 0;
-        Etiquetas etiq=new Etiquetas(864, "Diego", new Date(), new Date());
-        Roles nRol = new Roles(123, "Wendy", new Date(), new Date());
-        Usuario user = new Usuario(973, "Angel", "Ramos", "ulha", nRol, new Date(), new Date());
-        Niveles nuevoNivel=new Niveles(222, "Daniel", new Date(), new Date());
-        Publicaciones pulblicar=new Publicaciones(349, user, nuevoNivel, "123532", "abcd", 15, 35, 7.5, new Date(), new Date());
-        Etiquetas_publicaciones nEtiqPublic=new Etiquetas_publicaciones(etiq, pulblicar, new Date(), new Date());
-        try {
-            filas = etiqPublicDao.insertar(nEtiqPublic);
-            System.out.println("filas Insertadas:" + filas);
-        } catch (Exception e) {
+    public void testGeneral() throws Exception {
+          //              INSERTAR
+        int filasAfectadas =0;
+        IEtiquetas_publicaciones etiqueta_publicacionDao = new ImplEtiquetas_publicaciones();
+        IEtiquetas etiquetasDao = new ImplEtiquetas();
+        Etiquetas etiquetas = etiquetasDao.obtener(1);
+        IPublicaciones publicacionDao = new ImplPublicaciones();
+        Publicaciones publicacion = publicacionDao.obtener(2);
+        Etiquetas_publicaciones etiqueta_publicacion = new Etiquetas_publicaciones(etiquetas,publicacion,new Date(),new Date());
+        
+        try{
+            filasAfectadas = etiqueta_publicacionDao.insertar(etiqueta_publicacion);
+            System.out.println("Ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas > 0, true);
-//        TEST OBTENER POR CODIGO
-        Etiquetas_publicaciones etiqPubli = new Etiquetas_publicaciones();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE PEdido
+        List<Etiquetas_publicaciones> lista = new ArrayList<>();
         try {
-            etiqPubli = etiqPublicDao.obtener(1719,2345);
-            System.out.println(etiqPubli.getEtiquetas().getEtiqueta_Id()+ "    " + etiqPubli.getPublicaciones().getPublicaciones_Id()+ "    " + etiqPubli.getCreado()+ "    " + etiqPubli.getActualizado()+ "\n\n");
-        } catch (Exception e) {
-        }
-        assertEquals(etiqPubli != null, true);
-        //TEST LISTADO
-        ArrayList<Etiquetas_publicaciones> etiqPublies = new ArrayList<>();
-        try {
-            etiqPublies = etiqPublicDao.obtener();
-            for (Etiquetas_publicaciones etiPubli : etiqPublies) {
-                System.out.println(etiPubli.getEtiquetas().getEtiqueta_Id()+ "    " + etiPubli.getPublicaciones().getPublicaciones_Id()+ "    " + etiqPubli.getCreado()+ "    " + etiqPubli.getActualizado());
+            lista = etiqueta_publicacionDao.obtener();
+            for (Etiquetas_publicaciones c:lista){
+                
+                System.out.println("Etiqueta :"+c.getEtiquetas().getEtiqueta_Id());
+                System.out.println("Publicacion :"+c.getPublicaciones().getPublicaciones_Id());
+                System.out.println("Fecha creado :"+c.getCreado());
+                System.out.println("Fecha actualizado :"+c.getActualizado());
+                
             }
         } catch (Exception e) {
-            System.out.println("error: "+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(etiqPublies.size() > 0);
+        assertTrue(lista.size()>0);
     }
+
 }

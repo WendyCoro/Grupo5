@@ -15,9 +15,8 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IEtiquetas_publicaciones {
-    public int insertar(Etiquetas_publicaciones etiquetas_publicaciones) throws Exception;
-    public int modificar (Etiquetas_publicaciones etiquetas_publicaciones) throws Exception ;
-    public int eliminar (Etiquetas_publicaciones etiquetas_publicaciones) throws Exception ;
-    public Etiquetas_publicaciones obtener(long Etiqueta_Id ,long Publicacion_Id) throws Exception;
-    public ArrayList<Etiquetas_publicaciones> obtener() throws Exception;
+     public int insertar(Etiquetas_publicaciones etiqueta_publicacion) throws Exception;
+     
+     public List<Etiquetas_publicaciones> obtener() throws Exception;     
+     
 }

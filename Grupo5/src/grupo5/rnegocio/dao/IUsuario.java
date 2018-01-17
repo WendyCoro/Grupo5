@@ -15,11 +15,11 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IUsuario {
-        public int insertar(Usuario usuarios) throws Exception;
-    public int modificar (Usuario usuarios) throws Exception ;
-    public int eliminar (Usuario usuarios) throws Exception ;
-    public Usuario obtener(long Usuarios_Id) throws Exception;
-    public ArrayList<Usuario> obtener() throws Exception;
+        public int insertar(Usuario usuario) throws Exception;
+     
+     public List<Usuario> obtener() throws Exception;
+     
+     public Usuario obtener(long codigo) throws Exception;   
 
 
     

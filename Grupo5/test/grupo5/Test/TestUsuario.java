@@ -11,36 +11,41 @@ public class TestUsuario {
     public class TestRol {
     }
     @Test
-    public void testGeneral() {
+    public void testGeneral() throws Exception {
+        //              INSERTAR
+        int filasAfectadas =0;
         IUsuario usuarioDao = new ImplUsuario();
-        //TEST INSERTAR
-        int filas = 0;
-        Roles nRol = new Roles(123, "Diego", new Date(), new Date());
-        Usuario user = new Usuario(973, "Angel", "Ramos", "abcd", nRol, new Date(), new Date());
-        try {
-            filas = usuarioDao.insertar(user);
-            System.out.println("filas Insertadas:" + filas);
-        } catch (Exception e) {
+        IRoles rolDao = new ImplRoles();
+        Roles rol = rolDao.obtener(1);
+        Usuario usuario = new Usuario(2,"nombre3","email3","password3",rol,new Date(),new Date());
+        
+        try{
+            filasAfectadas = usuarioDao.insertar(usuario);
+            System.out.println("Ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas > 0, true);
-        //TEST OBTENER POR CODIGO
-        Usuario usuario = new Usuario();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE PEdido
+        List<Usuario> lista = new ArrayList<>();
         try {
-            usuario = usuarioDao.obtener(874);
-            System.out.println(usuario.getUsuario_Id() + "    " + usuario.getNombre() + "    " + usuario.getEmail() + "    " + usuario.getPassword() + "    " + usuario.getRoles().getRoles_Id() + "    " + usuario.getCreado() + "    " + usuario.getActualizado() + "\n\n");
-        } catch (Exception e) {
-        }
-        assertEquals(usuario != null, true);
-        //TEST LISTADO
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        try {
-            usuarios = usuarioDao.obtener();
-            for (Usuario nUsuario : usuarios) {
-                System.out.println(nUsuario.getUsuario_Id() + "    " + nUsuario.getNombre() + "    " + nUsuario.getEmail() + "    " + nUsuario.getPassword() + "    " + nUsuario.getRoles().getRoles_Id() + "    " + nUsuario.getCreado() + "    " + nUsuario.getActualizado());
+            lista = usuarioDao.obtener();
+            for (Usuario c:lista){
+                System.out.println("Id_usuario :"+c.getUsuario_Id());
+                System.out.println("Nombre :"+c.getNombre());
+                System.out.println("Email :"+c.getEmail());
+                System.out.println("Contraseña :"+c.getPassword());
+                System.out.println("Fecha de creacion :"+c.getCreado());
+                System.out.println("Fecha de actualizacion :"+c.getActualizado());
+                System.out.println("Rol :"+c.getRoles().getRoles_Id());
             }
         } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(usuarios.size() > 0);
+        assertTrue(lista.size()>0);
     }
 
 }
+
+
+

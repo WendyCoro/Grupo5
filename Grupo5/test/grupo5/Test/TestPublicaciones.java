@@ -11,38 +11,47 @@ public class TestPublicaciones {
     public TestPublicaciones() {
     }
     @Test
-    public void testGeneral() {
-        IPublicaciones publicDao = new ImplPublicaciones();
-        //TEST INSERTAR
-        int filas = 0;
-        Roles nRol = new Roles(123, "Diego", new Date(), new Date());
-        Usuario user = new Usuario(973, "Angel", "Ramos", "abcd", nRol, new Date(), new Date());
-        Niveles nuevoNivel=new Niveles(222, "diego", new Date(), new Date());
-        Publicaciones pulblicar=new Publicaciones(2345, user, nuevoNivel, "123532", "abcd", 15, 35, 7.5, new Date(), new Date());
-        try {
-            filas = publicDao.insertar(pulblicar);
-            System.out.println("filas Insertadas:" + filas);
-        } catch (Exception e) {
+    public void testGeneral() throws Exception{
+        //              INSERTAR
+        int filasAfectadas =0;
+        IPublicaciones publicacionDao = new ImplPublicaciones();
+        IUsuario usuarioDao = new ImplUsuario();
+        Usuario usuario = usuarioDao.obtener(1);
+        INiveles nivelDao = new ImplNiveles();
+        Niveles nivel = nivelDao.obtener(1);
+        Publicaciones publicacion = new Publicaciones(2,usuario,nivel,"titulo2","contenido2",1,1,12.34,new Date(),new Date());
+        
+        try{
+            filasAfectadas = publicacionDao.insertar(publicacion);
+            System.out.println("Ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas > 0, true);
-        //TEST OBTENER POR CODIGO
-        Publicaciones publicacion = new Publicaciones();
+        assertEquals(filasAfectadas>0, true);
+
+        List<Publicaciones> lista = new ArrayList<>();
         try {
-            publicacion = publicDao.obtener(2345);
-            System.out.println(publicacion.getPublicaciones_Id() + "    " + publicacion.getUsuario().getUsuario_Id()+ "    " + publicacion.getNiveles().getNiveles_Id()+ "    " + publicacion.getTitulo()+ "    " + publicacion.getContenido()+ "    " + publicacion.getPublicacion()+ "    " + publicacion.getVistas()+ "    " + publicacion.getCreado()+ "    " + publicacion.getActualizado()+ "    " + publicacion.getVotos()+ "\n\n");
-        } catch (Exception e) {
-        }
-        assertEquals(publicacion != null, true);
-        //TEST LISTADO
-        ArrayList<Publicaciones> publicaciones = new ArrayList<>();
-        try {
-            publicaciones = publicDao.obtener();
-            for (Publicaciones nPublicacion : publicaciones) {
-                System.out.println(nPublicacion.getPublicaciones_Id() + "    " + nPublicacion.getUsuario().getUsuario_Id()+ "    " + nPublicacion.getNiveles().getNiveles_Id()+ "    " + nPublicacion.getTitulo()+ "    " + nPublicacion.getContenido()+ "    " + nPublicacion.getPublicacion()+ "    " + nPublicacion.getVistas()+ "    " + nPublicacion.getCreado()+ "    " + nPublicacion.getActualizado()+ "    " + nPublicacion.getVotos());
+            lista = publicacionDao.obtener();
+            for (Publicaciones c:lista){
+                System.out.println("Id_publicacion :"+c.getPublicaciones_Id());
+                System.out.println("Usuario :"+c.getUsuario().getUsuario_Id());
+                System.out.println("Nivel :"+c.getNiveles().getNiveles_Id());
+                System.out.println("Titulo :"+c.getTitulo());
+                System.out.println("Contenido :"+c.getContenido());
+                System.out.println("Publicado :"+c.getPublicacion());
+                System.out.println("Vistas :"+c.getVistas());
+                System.out.println("Votos :"+c.getVotos());
+                System.out.println("Fecha de creado :"+c.getCreado());
+                System.out.println("Fecha de actualizado :"+c.getActualizado());
             }
         } catch (Exception e) {
-            System.out.println("error: "+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(publicaciones.size() > 0);
+        assertTrue(lista.size()>0);
     }
+
 }
+
+
+
+

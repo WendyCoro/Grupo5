@@ -12,35 +12,31 @@ public class TestNiveles {
     }
     @Test
     public void testGeneral(){
-        INiveles nivelDao=new ImplNiveles();
-//        //TEST INSERTAR
-        int filas=0;
-        Niveles nuevoNivel=new Niveles(123, "diego", new Date(), new Date());
-        try {
-            filas=nivelDao.insertar(nuevoNivel);
-            System.out.println("filas Insertadas:"+filas+"\n");
-        } catch (Exception e) {
+         //              INSERTAR
+        int filasAfectadas =0;
+        INiveles nivelDao = new ImplNiveles();
+        Niveles nivel = new Niveles(1,"jnijk",new Date(),new Date());
+        try{
+            filasAfectadas = nivelDao.insertar(nivel);
+            System.out.println("Nivel ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas>0, true);
-//        //TEST OBTENER POR CODIGO
-        Niveles nivel=new Niveles();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE NIVELES
+        List<Niveles> lista = new ArrayList<>();
         try {
-            nivel=nivelDao.obtener(222);
-            System.out.println(nivel.getNiveles_Id()+"    "+nivel.getNombre()+"    "+nivel.getCreado()+"    "+nivel.getActualizado()+"\n");
-        } catch (Exception e) {
-        }
-        assertEquals(nivel!=null, true);
-//        //TEST LISTADO
-        ArrayList<Niveles> niveles=new ArrayList<>();
-        try {
-            niveles=nivelDao.obtener();
-            for(Niveles lvl:niveles){
-                System.out.println(lvl.getNiveles_Id()+" "+lvl.getNombre()+" "+lvl.getCreado()+" "+lvl.getActualizado());
+            lista = nivelDao.obtener();
+            for (Niveles c:lista){
+                System.out.println("Id:nivel :"+c.getNiveles_Id());
+                System.out.println("Nombre :"+c.getNombre());
+                System.out.println("Fecha de creacion :"+c.getCreado());
+            System.out.println("Fecha de actualizacion :"+c.getActualizado());
             }
         } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(niveles.size()>0);
+        assertTrue(lista.size()>0);
     }
+
 }
-
-

@@ -12,34 +12,31 @@ public class TestEtiquetas {
     }
        @Test
     public void testGeneral() {
-          IEtiquetas etiquetaDao=new ImplEtiquetas();
-//        //TEST INSERTAR
-        int filas=0;
-        Etiquetas nuevoEtiqueta=new Etiquetas(1719, "diego", new Date(), new Date());
-        try {
-            filas=etiquetaDao.insertar(nuevoEtiqueta);
-            System.out.println("filas Insertadas:"+filas+"\n");
-        } catch (Exception e) {
+         //              INSERTAR
+        int filasAfectadas =0;
+        IEtiquetas etiquetasDao = new ImplEtiquetas();
+        Etiquetas etiquetas = new Etiquetas(1,"Etiqueta3",new Date(),new Date());
+        try{
+            filasAfectadas = etiquetasDao.insertar(etiquetas);
+            System.out.println("Etiqueta ingresado!!!\n");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas>0, true);
-//        //TEST OBTENER POR CODIGO
-        Etiquetas etiquee=new Etiquetas();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE etiqueta
+        List<Etiquetas> lista = new ArrayList<>();
         try {
-            etiquee=etiquetaDao.obtener(1719);
-            System.out.println(etiquee.getEtiqueta_Id()+"    "+etiquee.getNombre()+"    "+etiquee.getCreado()+"    "+etiquee.getActualizado()+"\n");
-        } catch (Exception e) {
-        }
-//        //TEST LISTADO
-        ArrayList<Etiquetas> etiquetas=new ArrayList<>();
-        try {
-            etiquetas=etiquetaDao.obtener();
-            for(Etiquetas etiqueta:etiquetas){
-                System.out.println(etiqueta.getEtiqueta_Id()+" "+etiqueta.getNombre()+" "+etiqueta.getCreado()+" "+etiqueta.getActualizado());
+            lista = etiquetasDao.obtener();
+            for (Etiquetas c:lista){
+                System.out.println("Id_etiqueta :"+c.getEtiqueta_Id());
+                System.out.println("Nombre :"+c.getNombre());
+                System.out.println("Fecha de creacion :"+c.getCreado());
+            System.out.println("Fecha de actualizacion :"+c.getActualizado());
             }
         } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        assertTrue(etiquetas.size()>0);
-    }
+        assertTrue(lista.size()>0);
     }
 
-
+}

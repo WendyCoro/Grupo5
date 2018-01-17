@@ -16,9 +16,7 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IEtiquetas {
-    public int insertar(Etiquetas etiquetas) throws Exception;
-    public int modificar (Etiquetas etiquetas) throws Exception ;
-    public int eliminar (Etiquetas etiquetas) throws Exception ;
-    public Etiquetas obtener(long Etiqueta_Id) throws Exception;
-    public ArrayList<Etiquetas> obtener() throws Exception;
+    public int insertar(Etiquetas etiquetas) throws Exception;     
+     public List<Etiquetas> obtener() throws Exception;   
+     public Etiquetas obtener(long codigo) throws Exception;
 }

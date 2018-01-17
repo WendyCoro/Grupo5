@@ -6,9 +6,9 @@ import java.sql.*;
 public class Conexion {
     
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=MALLSHOPPING";
-    String usuario = "macas";
-    String conraseña = "macas1";
+    String url = "jdbc:sqlserver://192.168.1.7:1433;databaseName=github";
+    String usuario = "angel";
+    String conraseña = "123";
     Connection conexion = null;
 
     public void conectar() {
@@ -16,7 +16,7 @@ public class Conexion {
         try {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, usuario, conraseña);
-            System.out.println("Conexion Establecida!!!");
+            
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar Driver: " + e.getMessage());
         } catch (SQLException e) {

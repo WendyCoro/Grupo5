@@ -15,10 +15,10 @@ import java.util.List;
  * @author TOSHIBA
  */
 public interface IRoles {
-    public int insertar(Roles roles) throws Exception;
-    public int modificar (Roles roles) throws Exception ;
-    public int eliminar (Roles roles) throws Exception ;
-    public Roles obtener(long Roless_Id) throws Exception;
-    public ArrayList<Roles> obtener() throws Exception;
+     public int insertar(Roles roles) throws Exception;
+     
+     public List<Roles> obtener() throws Exception;
+     
+     public Roles obtener(long codigo) throws Exception; 
 
 }

@@ -11,159 +11,83 @@ import java.sql.*;
 
 public class ImplEtiquetas implements IEtiquetas{
 
-    @Override
-    public int insertar(Etiquetas etiquetas) throws Exception{
+  
+      @Override
+    public int insertar(Etiquetas etiqueta) throws Exception{
         int numFilasAfectadas=0;
-        String sql="INSERT INTO Etiquetas (Etiqueta_Id,Nombre,Creado,Actualizado)VALUES(?,?,?,?)";
+        String sql="insert into Etiquetas values(?,?,?,?)";
         List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, etiquetas.getEtiqueta_Id()));
-        lstPar.add(new Parametro(2, etiquetas.getNombre()));
-        if (etiquetas.getCreado() instanceof java.sql.Date){
-            lstPar.add (new Parametro(3,new java.sql.Date(((java.util.Date) etiquetas.getCreado()).getTime())));
-        }else {
-            lstPar.add (new Parametro(3, etiquetas.getCreado()));
-        }
-        if (etiquetas.getCreado() instanceof java.sql.Date){
-            lstPar.add (new Parametro(4,new java.sql.Date(((java.util.Date) etiquetas.getActualizado()).getTime())));
-        }else {
-            lstPar.add (new Parametro(4, etiquetas.getActualizado()));
-        }
+        lstPar.add(new Parametro(1, etiqueta.getEtiqueta_Id()));
+        lstPar.add(new Parametro(2, etiqueta.getNombre()));
+        lstPar.add(new Parametro(3, etiqueta.getCreado()));
+        lstPar.add(new Parametro(4, etiqueta.getActualizado()));
         Conexion con = null;
+        
         try{
             con = new Conexion();
             con.conectar();
             numFilasAfectadas=con.ejecutarComando(sql, lstPar);
         }catch (Exception e) {
-            System.out.print("Error" + e.getMessage());
+            throw e;
         }finally {
-            if(con!=null){
+            if(con!=null)
             con.desconectar();
-        }
         }
         return numFilasAfectadas;
     }
-    
-   
     @Override
-    public int modificar (Etiquetas etiquetas) throws Exception{
-         int numFilasAfectadas=0;
-        String sql="UPDATE  Etiquetas SET  Etiqueta_Id=? ,Nombre=? ,Creado=? ,Actualizado=? WHERE Etiqueta_Id=?"  ;
-        List<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, etiquetas.getEtiqueta_Id()));
-        lstPar.add(new Parametro(2, etiquetas.getNombre()));
-        if (etiquetas.getCreado() instanceof java.sql.Date){
-            lstPar.add (new Parametro(3,new java.sql.Date(((java.util.Date) etiquetas.getCreado()).getTime())));
-        }else {
-            lstPar.add (new Parametro(3, etiquetas.getCreado()));
-        }
-        if (etiquetas.getCreado() instanceof java.sql.Date){
-            lstPar.add (new Parametro(4,new java.sql.Date(((java.util.Date) etiquetas.getActualizado()).getTime())));
-        }else {
-            lstPar.add (new Parametro(4, etiquetas.getActualizado()));
-        }
+    public List<Etiquetas> obtener() throws Exception{
+        List<Etiquetas> lista = new ArrayList<>();
+        
+        String sql="SELECT * FROM Etiquetas;";
         Conexion con = null;
         try{
+            Etiquetas etiqueta = null;
             con = new Conexion();
             con.conectar();
-            numFilasAfectadas=con.ejecutarComando(sql, lstPar);
+            ResultSet rst = con.ejecutarQuery(sql, null);
+            while (rst.next()){
+                etiqueta = new Etiquetas();
+                etiqueta.setEtiqueta_Id(rst.getLong(1));
+                etiqueta.setNombre(rst.getString(2));
+                etiqueta.setCreado(rst.getDate(3));
+                etiqueta.setActualizado(rst.getDate(4));
+                lista.add(etiqueta);
+           }
         }catch (Exception e) {
-           System.out.print("Error" + e.getMessage());
+            throw e;
         }finally {
-            if(con!=null){
+            if(con!=null)
             con.desconectar();
         }
-       }
-        return numFilasAfectadas;
-    }
-    
-   
-    @Override
-    public int eliminar (Etiquetas etiquetas) throws Exception{
-         int numFilasAfectadas=0;
-        String sql="DELETE FROM  Etiquetas WHERE Etiqueta_Id=?"  ;
-        ArrayList<Parametro> lstPar =new ArrayList<>();
-        lstPar.add(new Parametro(1, etiquetas.getEtiqueta_Id()));
-    
-        Conexion con = null;
-        try{
-            con = new Conexion();
-            con.conectar();
-            numFilasAfectadas=con.ejecutarComando(sql, lstPar);
-        }catch (Exception e) {
-            System.out.print("Error" + e.getMessage());
-        }finally {
-            if(con!=null){
-            con.desconectar();
-        }
-        }
-        return numFilasAfectadas;
+        return lista;
     }  
-    
-      
-    
     @Override
-    public Etiquetas obtener(long Etiqueta_Id) throws Exception{
-        Etiquetas lstetiqueta =null;
-        String sqlC="SELECT Etiqueta_Id, Nombre, Creado, Actualizado FROM Etiquetas WHERE Etiqueta_Id=? "  ;
-        ArrayList<Parametro> lstPar =new ArrayList<>();
-        lstPar.add(new Parametro(1, Etiqueta_Id));
-    
+    public Etiquetas obtener(long codigo) throws Exception{
+        Etiquetas etiqueta = null;
+        String sql="SELECT * FROM Etiquetas where Etiqueta_Id=?;";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
         try{
             con = new Conexion();
             con.conectar();
-            ResultSet rst = con.ejecutarQuery(sqlC, lstPar);
+            ResultSet rst = con.ejecutarQuery(sql, lstPar);
             while (rst.next()){
-            lstetiqueta = new Etiquetas();
-            lstetiqueta.setEtiqueta_Id(rst.getInt(1));
-            lstetiqueta.setNombre(rst.getString(2));
-            lstetiqueta.setCreado(rst.getDate(3));
-            lstetiqueta.setActualizado(rst.getDate(4));    
-        }
-        }catch (Exception e) {
-            System.out.print("Error" + e.getMessage());
-        }finally {
-            if(con!=null){
-            con.desconectar();
+                etiqueta = new Etiquetas();
+                etiqueta.setEtiqueta_Id(rst.getLong(1));
+                etiqueta.setNombre(rst.getString(2));
+                etiqueta.setCreado(rst.getDate(3));
+                etiqueta.setActualizado(rst.getDate(4));
             }
-        }
-        return lstetiqueta;
-       
-        
-    }
-
-    
-    @Override
-    public ArrayList<Etiquetas> obtener() throws Exception{
-        ArrayList<Etiquetas>lsEtiqueta = new ArrayList<>();
-        Etiquetas stetiqueta =null;
-        String sqlC="SELECT Etiqueta_Id, Nombre, Creado, Actualizado FROM Etiquetas "  ;
-       
-        Conexion con = null;
-        try{
-            con = new Conexion();
-            con.conectar();
-            ResultSet rst = con.ejecutarQuery(sqlC, null);
-            while (rst.next()){
-            stetiqueta = new Etiquetas();
-            stetiqueta.setEtiqueta_Id(rst.getInt(1));
-            stetiqueta.setNombre(rst.getString(2));
-            stetiqueta.setCreado(rst.getDate(3));
-            stetiqueta.setActualizado(rst.getDate(4));    
-           lsEtiqueta.add(stetiqueta);
-        }
+            
         }catch (Exception e) {
-            System.out.print("Error" + e.getMessage());
+            throw e;
         }finally {
-            if(con!=null){
-                con.desconectar();
+            if(con!=null)
+            con.desconectar();
         }
+        return etiqueta;
     }
-        return lsEtiqueta;
-       
-        
-    }
-
-
     
 }
