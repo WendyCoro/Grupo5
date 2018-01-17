@@ -31,7 +31,7 @@ public class NivelesTest {
             // TEST INSERTAR
 
             int filas = 0;
-            Niveles nivel=new Niveles(4, "Wen", new java.util.Date(), new java.util.Date());
+            Niveles nivel=new Niveles(4, "carlos", new java.util.Date(), new java.util.Date());
             try {
                 filas = nivelesDao.insertar(nivel);
                 System.out.println("Ingreso de " + filas + " Filas Correctas");
@@ -53,8 +53,10 @@ public class NivelesTest {
             ArrayList<Niveles> niveless = new ArrayList<>();
             try {
                 niveless = nivelesDao.obtener();
+                 System.out.println("ID ROLES \t" + " NOMBRE\t" + " \tCREADO\t" + "\t\tACTUALIZADO\t " );
+           
                 for (Niveles nivelt : niveless) {
-                    System.out.println(nivelt.getId_n() + " " + nivelt.getNombre() + " " + nivelt.getCreado() + " " + nivelt.getActualizado());
+                    System.out.println(nivelt.getId_n() + "\t\t" + nivelt.getNombre() + "\t\t" + nivelt.getCreado() + "\t\t" + nivelt.getActualizado());
                 }
             } catch (Exception e) {
             }

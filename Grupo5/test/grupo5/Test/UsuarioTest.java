@@ -32,7 +32,7 @@ public class UsuarioTest {
         int filas=0;
         
         Roles rol=new Roles(1, "Wendy", new java.util.Date(), new java.util.Date());
-        Usuarios user=new Usuarios(1, "Wendy", "dayan_p2010@hotmai.com", "3456", rol, new java.util.Date(), new java.util.Date());
+        Usuarios user=new Usuarios(5, "carlos", ".com", "3456", rol, new java.util.Date(), new java.util.Date());
         
            try {
             filas=usDao.insertar(user);
@@ -48,7 +48,8 @@ public class UsuarioTest {
         Usuarios use=new Usuarios();
         try {
             use=usDao.obtener(1);
-            System.out.println(use.getId_u()+" "+use.getNombre()+" "+use.getEmail()+" "+use.getPasword()+" "+use.getRoles().getId_r()+" "+use.getCreado()+" "+use.getActualizado());
+          
+            System.out.println("\n"+use.getId_u()+" "+use.getNombre()+" "+use.getEmail()+" "+use.getPasword()+" "+use.getRoles().getId_r()+" "+use.getCreado()+" "+use.getActualizado());
         } catch (Exception e) {
             System.out.println("error: "+e.getMessage());
         }
@@ -62,16 +63,17 @@ public class UsuarioTest {
         
         try{
             usuarioss = usDao.obtener();
+             System.out.println("ID USUARIO \t" + " NOMBRE\t"+ " \tEMAIL\t"+ " \tPASSWORD\t" + " CREADO\t" + "\tACTUALIZADO\t " );
+           
             for (Usuarios nusuarios : usuarioss) {
-                 System.out.println(nusuarios.getId_u()+" "+nusuarios.getNombre()+" "+nusuarios.getEmail()+" "+nusuarios.getPasword()+" "+nusuarios.getRoles().getId_r()+" "+nusuarios.getCreado()+" "+nusuarios.getActualizado());
+                 System.out.println(nusuarios.getId_u()+"\t\t"+nusuarios.getNombre()+"\t\t"+nusuarios.getEmail()+"\t\t"+nusuarios.getPasword()+" "+nusuarios.getRoles().getId_r()+"\t\t"+nusuarios.getCreado()+"\t\t"+nusuarios.getActualizado());
             }
         }catch (Exception e){         
          
        }
       assertEquals(usuarioss!=null, true);
        
-//        
-//        
+     
     }
     
     }

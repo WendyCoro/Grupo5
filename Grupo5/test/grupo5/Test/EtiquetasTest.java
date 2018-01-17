@@ -30,9 +30,9 @@ public class EtiquetasTest {
     public void testGeneral() {
         IEtiquetas etiquetasDao = new EtiquetasImpl();
 //            // TEST INSERTAR
-//
+
             int filas = 0;
-            Etiquetas etiqueta=new Etiquetas(1, "Michu", new java.util.Date(), new java.util.Date());
+            Etiquetas etiqueta=new Etiquetas(5, "angel", new java.util.Date(), new java.util.Date());
             try {
                 filas = etiquetasDao.insertar(etiqueta);
                 System.out.println("Ingreso de " + filas + " Filas Correctas");
@@ -50,16 +50,18 @@ public class EtiquetasTest {
 //        } catch (Exception e) {
 //        }
 //        //*------------------------------------------------------------------------------------------------------------------------------------*
-////        
-//            //TEST LISTADO
-//            ArrayList<Etiquetas> etiquetass = new ArrayList<>();
-//            try {
-//                etiquetass = etiquetasDao.obtener();
-//                for (Etiquetas etiquetat : etiquetass) {
-//                    System.out.println(etiquetat.getId_e() + " " + etiquetat.getNombre() + " " + etiquetat.getCreado() + " " + etiquetat.getActualizado());
-//                }
-//            } catch (Exception e) {
-//            }
-//            assertEquals(etiquetass!= null, true);
+//        
+            //TEST LISTADO
+            ArrayList<Etiquetas> etiquetass = new ArrayList<>();
+            try {
+                etiquetass = etiquetasDao.obtener();
+                System.out.println("CODIGO \t\t" + " NOMBRE\t" + " \tCREADO\t" + "\t\tACTUALIZADO\t " );
+           
+                for (Etiquetas etiquetat : etiquetass) {
+                    System.out.println(etiquetat.getId_e() + "\t\t" + etiquetat.getNombre() + "\t\t" + etiquetat.getCreado() + "\t\t" + etiquetat.getActualizado());
+                }
+            } catch (Exception e) {
+            }
+            assertEquals(etiquetass!= null, true);
     }
 }

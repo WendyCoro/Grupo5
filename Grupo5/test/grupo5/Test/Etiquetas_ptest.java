@@ -39,12 +39,12 @@ public class Etiquetas_ptest {
         ///////////INSERTAR TEST
         int filas = 0;
 //
-        Roles ro = new Roles(7, " Wendy ", new java.util.Date(), new java.util.Date());
-        Niveles nive = new Niveles(7, "Carlos", new java.util.Date(), new java.util.Date());
-        Usuarios usua = new Usuarios(1, " Wendy ", "ao@gmail.com", "12", ro, new java.util.Date(), new java.util.Date());
+        Roles ro = new Roles(2, " Wendy ", new java.util.Date(), new java.util.Date());
+        Niveles nive = new Niveles(1, "Carlos", new java.util.Date(), new java.util.Date());
+        Usuarios usua = new Usuarios(1, " Wendy ", "ao@com", "12", ro, new java.util.Date(), new java.util.Date());
         Publicaciones publi = new Publicaciones(1, usua, nive, "casa", "ropa", 1, 1, 1.5, new java.util.Date(), new java.util.Date());
-        Etiquetas eti = new Etiquetas(1, " Wendy ", new java.util.Date(), new java.util.Date());
-        Etiquetas_publicaciones etipubli = new Etiquetas_publicaciones(1, eti, publi, new java.util.Date(), new java.util.Date());
+        Etiquetas eti = new Etiquetas(2, " Wendy ", new java.util.Date(), new java.util.Date());
+        Etiquetas_publicaciones etipubli = new Etiquetas_publicaciones(3, eti, publi, new java.util.Date(), new java.util.Date());
 
         try {
             filas = epDao.insertar(etipubli);

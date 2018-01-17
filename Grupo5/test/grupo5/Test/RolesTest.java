@@ -34,7 +34,7 @@ public class RolesTest {
         // TEST INSERTAR
 ////
             int filas = 0;
-            Roles rol=new Roles(4, "Alex", new java.util.Date(), new java.util.Date());
+            Roles rol=new Roles(5, "julio", new java.util.Date(), new java.util.Date());
             try {
                 filas = rolesDao.insertar(rol);
                 System.out.println("Ingreso de " + filas + " Filas Correctas");
@@ -60,8 +60,10 @@ public class RolesTest {
         ArrayList <Roles> listRoles = new ArrayList<>();
         try {
             listRoles = rolesDao.obtener();
+             System.out.println("ID ROLES \t" + " NOMBRE\t" + " \tCREADO\t" + "\t\tACTUALIZADO\t " );
+           
             for (Roles rolt : listRoles) {
-                System.out.println(rolt.getId_r() + " " + rolt.getNombre() + " " + rolt.getCreado() + " " + rolt.getActualizado());
+                System.out.println(rolt.getId_r() + "\t\t" + rolt.getNombre() + "\t\t" + rolt.getCreado() + "\t\t" + rolt.getActualizado());
             }
         } catch (Exception e) {
         }
