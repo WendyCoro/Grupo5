@@ -39,11 +39,11 @@ public class Etiquetas_ptest {
         ///////////INSERTAR TEST
 //        int filas = 0;
 //
-        Roles ro = new Roles(1, "Michu", new java.util.Date(), new java.util.Date());
-        Niveles nive = new Niveles(1, "Michu", new java.util.Date(), new java.util.Date());
-        Usuarios usua = new Usuarios(1, "Michu", "ao@gmail.com", "12", ro, new java.util.Date(), new java.util.Date());
+        Roles ro = new Roles(1, " Wendy ", new java.util.Date(), new java.util.Date());
+        Niveles nive = new Niveles(1, "Wendy", new java.util.Date(), new java.util.Date());
+        Usuarios usua = new Usuarios(1, " Wendy ", "ao@gmail.com", "12", ro, new java.util.Date(), new java.util.Date());
         Publicaciones publi = new Publicaciones(1, usua, nive, "casa", "ropa", 1, 1, 1.5, new java.util.Date(), new java.util.Date());
-        Etiquetas eti = new Etiquetas(1, "Michu", new java.util.Date(), new java.util.Date());
+        Etiquetas eti = new Etiquetas(1, " Wendy ", new java.util.Date(), new java.util.Date());
         Etiquetas_publicaciones etipubli = new Etiquetas_publicaciones(1, eti, publi, new java.util.Date(), new java.util.Date());
 
 //        try {
