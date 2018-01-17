@@ -6,17 +6,17 @@ import java.sql.*;
 public class Conexion {
     
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    String url = "jdbc:sqlserver://192.168.1.7:1433;databaseName=github";
-    String usuario = "angel";
-    String conraseña = "123";
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=MALLSHOPPING";
+    String usuario = "macas";
+    String conraseña = "macas1";
     Connection conexion = null;
 
-    public void conectar() {
+       public void conectar() {
 
         try {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, usuario, conraseña);
-            
+            System.out.println("Conexion Establecida!!!");
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar Driver: " + e.getMessage());
         } catch (SQLException e) {
@@ -48,12 +48,13 @@ public class Conexion {
         return resultado;
     }
 
-    public int ejecutarComando(String sql, List<Parametro> lst) {
-        int nFilasAfectadas=0;    
+    public int ejecutarComando(String sql, ArrayList<Parametro> ValoresParametro) {
+        int nFilasAfectadas=0;
+        ResultSet resultado = null;
         try {
             PreparedStatement estado = conexion.prepareStatement(sql);
-            if (lst != null) {
-               for (Parametro valorP : lst) {
+            if (ValoresParametro != null) {
+                for (Parametro valorP : ValoresParametro) {
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
                     } else {

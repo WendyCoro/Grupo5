@@ -5,7 +5,12 @@
  */
 package gupo5.accesodatos;
 
+
+import java.util.*;
+import java.sql.*;
+
 public class Parametro {
+
     private int posicion;
     private Object valor;
 
@@ -32,4 +37,5 @@ public class Parametro {
     public void setValor(Object valor) {
         this.valor = valor;
     }
+
 }

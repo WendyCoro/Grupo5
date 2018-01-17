@@ -14,13 +14,12 @@ import java.util.List;
  *
  * @author TOSHIBA
  */
-public interface IUsuario {
-        public int insertar(Usuario usuario) throws Exception;
-     
-     public List<Usuario> obtener() throws Exception;
-     
-     public Usuario obtener(long codigo) throws Exception;   
-
+public interface IUsuarios {
+        public int insertar (Usuarios usuarios) throws Exception;
+    public int modificar (Usuarios usuarios) throws Exception;
+    public int eliminar (Usuarios usuarios) throws Exception;
+    public Usuarios obtener(int id_u) throws Exception;
+    public ArrayList<Usuarios> obtener () throws Exception;
 
     
     

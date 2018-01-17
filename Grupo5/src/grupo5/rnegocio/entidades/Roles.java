@@ -2,55 +2,52 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Roles {
-    private long Roles_Id;
-    private String Nombre;
-    private Date Creado;
-    private Date Actualizado;
+   private int id_r;
+    private String nombre;
+    private Date creado;
+    private Date actualizado; 
 
     public Roles() {
     }
 
-    public Roles(long Roles_Id, String Nombre, Date Creado, Date Actualizado) {
-        this.Roles_Id = Roles_Id;
-        this.Nombre = Nombre;
-        this.Creado = Creado;
-        this.Actualizado = Actualizado;
+    public Roles(int id_r, String nombre, Date creado, Date actualizado) {
+        this.id_r = id_r;
+        this.nombre = nombre;
+        this.creado = creado;
+        this.actualizado = actualizado;
     }
 
-    public long getRoles_Id() {
-        return Roles_Id;
+    public int getId_r() {
+        return id_r;
     }
 
-    public void setRoles_Id(long Roles_Id) {
-        this.Roles_Id = Roles_Id;
+    public void setId_r(int id_r) {
+        this.id_r = id_r;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Date getCreado() {
-        return Creado;
+        return creado;
     }
 
-    public void setCreado(Date Creado) {
-        this.Creado = Creado;
+    public void setCreado(Date creado) {
+        this.creado = creado;
     }
 
     public Date getActualizado() {
-        return Actualizado;
+        return actualizado;
     }
 
-    public void setActualizado(Date Actualizado) {
-        this.Actualizado = Actualizado;
-    }
-
-    
-    
-    
+    public void setActualizado(Date actualizado) {
+        this.actualizado = actualizado;
+    } 
 }
+
 
