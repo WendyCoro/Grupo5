@@ -1,67 +1,41 @@
 package grupo5.Test;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import grupo5.rnegocio.dao.IEtiquetas;
-import grupo5.rnegocio.entidades.Etiquetas;
-import grupo5.rnegocio.impl.EtiquetasImpl;
-import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import grupo5.rnegocio.impl.*;
 
-/**
- *
- * @author Wen
- */
 public class EtiquetasTest {
-    
     public EtiquetasTest() {
     }
-    
     @Test
-    public void testGeneral() {
+    public void pruebageneral(){
+        //              INSERTAR
+        int filasAfectadas =0;
         IEtiquetas etiquetasDao = new EtiquetasImpl();
-//            // TEST INSERTAR
-
-            int filas = 0;
-            Etiquetas etiqueta=new Etiquetas(5, "angel", new java.util.Date(), new java.util.Date());
-            try {
-                filas = etiquetasDao.insertar(etiqueta);
-                System.out.println("Ingreso de " + filas + " Filas Correctas");
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+        Etiquetas etiqueta = new Etiquetas(1234,"Etiqueta3",new Date(),new Date());
+        try{
+            filasAfectadas = etiquetasDao.insertar(etiqueta);
+            System.out.println("Etiqueta ingresada!!!");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE etiqueta
+        List<Etiquetas> lista = new ArrayList<>();
+        try {
+            lista = etiquetasDao.obtener();
+            for (Etiquetas e:lista){
+                System.out.println("Id_etiqueta :"+e.getId_e());
+                System.out.println("Nombre :"+e.getNombre());
+                System.out.println("Fecha de creacion :"+e.getCreado());
+            System.out.println("Fecha de actualizacion :"+e.getActualizado());
             }
-            assertEquals(filas > 0, true);
-
-            //TEST OBTENER POR CODIGO
-//        
-//        Etiquetas etiqueta =new Etiquetas();
-//        try {
-//            etiqueta=etiquetasDao.obtener(1);
-//            System.out.println("            "+etiqueta.getId_e()+"    "+etiqueta.getNombre()+"    "+etiqueta.getCreado()+"    "+etiqueta.getActualizado());
-//        } catch (Exception e) {
-//        }
-//        //*------------------------------------------------------------------------------------------------------------------------------------*
-//        
-            //TEST LISTADO
-            ArrayList<Etiquetas> etiquetass = new ArrayList<>();
-            try {
-                etiquetass = etiquetasDao.obtener();
-                System.out.println("CODIGO \t\t" + " NOMBRE\t" + " \tCREADO\t" + "\t\tACTUALIZADO\t " );
-           
-                for (Etiquetas etiquetat : etiquetass) {
-                    System.out.println(etiquetat.getId_e() + "\t\t" + etiquetat.getNombre() + "\t\t" + etiquetat.getCreado() + "\t\t" + etiquetat.getActualizado());
-                }
-            } catch (Exception e) {
-            }
-            assertEquals(etiquetass!= null, true);
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        assertTrue(lista.size()>0);
     }
+
 }

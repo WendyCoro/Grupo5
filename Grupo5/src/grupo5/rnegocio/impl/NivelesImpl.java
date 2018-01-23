@@ -1,159 +1,85 @@
-
 package grupo5.rnegocio.impl;
-import grupo5.rnegocio.entidades.Niveles;
-import grupo5.rnegocio.dao.*;
-import grupo5.rnegocio.entidades.*;
-import gupo5.accesodatos.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import gupo5.accesodatos.*;
 
-
-
-public class NivelesImpl implements INiveles {
-    
-    
-    @Override
-    public int insertar(Niveles niveles) throws Exception {
-        int numFilas = 0;
-        String sqlC = "INSERT INTO Niveles (id_n, nombre, creado, actualizado ) VALUES (?,?,?,?)";
-        ArrayList<Parametro> lisParametros = new ArrayList<>();
-        lisParametros.add(new Parametro(1, niveles.getId_n()));
-        lisParametros.add(new Parametro(2, niveles.getNombre()));
-        if(niveles.getCreado()instanceof java.util.Date)
-        {
-            lisParametros.add(new Parametro(3, new java.sql.Date(((java.util.Date) niveles.getCreado()).getTime())));
-        }
-        else
-        
-        {
-            lisParametros.add(new Parametro(3, niveles.getCreado()));
-        }
-        
-         if(niveles.getActualizado()instanceof java.util.Date)
-        {
-            lisParametros.add(new Parametro(4, new java.sql.Date(((java.util.Date) niveles.getActualizado()).getTime())));
-        }
-        else
-        
-        {
-            lisParametros.add(new Parametro(4, niveles.getActualizado()));
-        }
+public class NivelesImpl implements INiveles {    
+     @Override
+    public int insertar(Niveles nivel) throws Exception{
+        int numFilasAfectadas=0;
+        String sql="insert into nivel values(?,?,?,?)";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, nivel.getId_n()));
+        lstPar.add(new Parametro(2, nivel.getNombre()));
+        lstPar.add(new Parametro(3, nivel.getCreado()));
+        lstPar.add(new Parametro(4, nivel.getActualizado()));
         Conexion con = null;
-        try {
-            con=new Conexion();
+        try{
+            con = new Conexion();
             con.conectar();
-            numFilas=con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("error: "+e.getMessage());
-        } finally {
-            if(con!=null){
-                con.desconectar();
-            }
+            numFilasAfectadas=con.ejecutarComando(sql, lstPar);
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return numFilas;
+        return numFilasAfectadas;
     }
-
     @Override
-    public int modificar(Niveles niveles) throws Exception {
-        int numFilas = 0;
-        String sqlC="UPDATE niveles SET id_n=?, nombre=?, creado=? actualizado=?  WHERE id_n=?";
-        ArrayList<Parametro> lisParametros=new ArrayList<>();
-        lisParametros.add(new Parametro(1, niveles.getId_n()));
-        lisParametros.add(new Parametro(2, niveles.getNombre()));
-        lisParametros.add(new Parametro(3, niveles.getCreado()));
-        lisParametros.add(new Parametro(4, niveles.getActualizado()));
-        Conexion con=null;
-        try {
-            con=new Conexion();
+    public List<Niveles> obtener() throws Exception{
+        List<Niveles> lista = new ArrayList<>();
+        
+        String sql="SELECT * FROM nivel;";
+        Conexion con = null;
+        try{
+            Niveles nivel = null;
+            con = new Conexion();
             con.conectar();
-            numFilas=con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return numFilas;
-    }
-
-    @Override
-    public int eliminar(Niveles niveles) throws Exception {
-        int numFilas = 0;
-        String sqlC="DELETE FROM niveles WHERE id_n=?";
-        ArrayList<Parametro> lisParametros=new ArrayList<>();
-        lisParametros.add(new Parametro(1, niveles.getId_n()));
-        Conexion con=null;
-        try {
-            con=new Conexion();
-            con.conectar();
-            numFilas=con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return numFilas;
-    }
-
-    @Override
-    public Niveles obtener(int codigo) throws Exception {
-        Niveles nNivel = null;
-        String sqlC="SELECT id_n, nombre, creado, actualizado  FROM Niveles where id_n=?";
-        ArrayList<Parametro> lisParametros=new ArrayList<>();
-        lisParametros.add(new Parametro(1, codigo));
-        Conexion con=null;
-        try {
-            con=new Conexion();
-            con.conectar();
-            ResultSet rst=con.ejecutarQuery(sqlC, lisParametros);
+            ResultSet rst = con.ejecutarQuery(sql, null);
             while (rst.next()){
-                nNivel = new Niveles();
-                nNivel.setId_n(rst.getInt(1));
-                nNivel.setNombre(rst.getString(2));
-                nNivel.setCreado(rst.getDate(3));
-                nNivel.setActualizado(rst.getDate(4));
-              
-            }
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+                nivel = new Niveles();
+                nivel.setId_n(rst.getLong(1));
+                nivel.setNombre(rst.getString(2));
+                nivel.setCreado(rst.getDate(3));
+                nivel.setActualizado(rst.getDate(4));
+                lista.add(nivel);
+           }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return nNivel;
-    }
-
+        return lista;
+    }  
     @Override
-    public ArrayList<Niveles> obtener() throws Exception {
-        ArrayList<Niveles> listNivel = new ArrayList<>();
-        String sqlC="SELECT id_n, nombre, creado, actualizado FROM Niveles";
-        Conexion con=null;
-        try {
-            con=new Conexion();
+    public Niveles obtener(long codigo) throws Exception{
+        Niveles nivel = null;
+        String sql="SELECT * FROM nivel where id_n=?;";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, codigo));
+        Conexion con = null;
+        try{
+            con = new Conexion();
             con.conectar();
-            ResultSet rst=con.ejecutarQuery(sqlC, null);
-            Niveles niveles=null;
+            ResultSet rst = con.ejecutarQuery(sql, lstPar);
             while (rst.next()){
-                niveles = new Niveles();
-                niveles.setId_n(rst.getInt(1));
-                niveles.setNombre(rst.getString(2));
-                niveles.setCreado(rst.getDate(3));
-                niveles.setActualizado(rst.getDate(4));
-              
-                listNivel.add(niveles);
+                nivel = new Niveles();
+                nivel.setId_n(rst.getLong(1));
+                nivel.setNombre(rst.getString(2));
+                nivel.setCreado(rst.getDate(3));
+                nivel.setActualizado(rst.getDate(4));
             }
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return listNivel;
-    }
+        return nivel;
+    }  
 }

@@ -3,7 +3,7 @@ package grupo5.rnegocio.entidades;
 import java.util.*;
 
 public class Etiquetas {
-    private int id_e;
+    private long id_e;
     private String nombre;
     private Date creado;
     private Date actualizado; 
@@ -11,18 +11,18 @@ public class Etiquetas {
     public Etiquetas() {
     }
 
-    public Etiquetas(int id_e, String nombre, Date creado, Date actualizado) {
+    public Etiquetas(long id_e, String nombre, Date creado, Date actualizado) {
         this.id_e = id_e;
         this.nombre = nombre;
         this.creado = creado;
         this.actualizado = actualizado;
     }
 
-    public int getId_e() {
+    public long getId_e() {
         return id_e;
     }
 
-    public void setId_e(int id_e) {
+    public void setId_e(long id_e) {
         this.id_e = id_e;
     }
 

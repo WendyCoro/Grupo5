@@ -2,7 +2,7 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Roles {
-   private int id_r;
+   private long id_r;
     private String nombre;
     private Date creado;
     private Date actualizado; 
@@ -17,11 +17,11 @@ public class Roles {
         this.actualizado = actualizado;
     }
 
-    public int getId_r() {
+    public long getId_r() {
         return id_r;
     }
 
-    public void setId_r(int id_r) {
+    public void setId_r(long id_r) {
         this.id_r = id_r;
     }
 

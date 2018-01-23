@@ -1,175 +1,99 @@
 package grupo5.rnegocio.impl;
-import grupo5.rnegocio.entidades.Usuarios;
-import grupo5.rnegocio.entidades.Roles;
-import grupo5.rnegocio.dao.*;
-import grupo5.rnegocio.entidades.*;
-import gupo5.accesodatos.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import gupo5.accesodatos.*;
 
-public class UsuariosImpl implements IUsuarios {
-
-    @Override
-    public int insertar(Usuarios usuarios) throws Exception {
-        int numFilas = 0;
-        String sqlC = "insert into usuarios (id_u, nombre, email, pasword, id_r, creado, actualizado) VALUES (?,?,?,?,?,?,?)";
-        ArrayList<Parametro> lisParametros = new ArrayList<>();
-        lisParametros.add(new Parametro(1, usuarios.getId_u()));
-        lisParametros.add(new Parametro(2, usuarios.getNombre()));
-        lisParametros.add(new Parametro(3, usuarios.getEmail()));
-        lisParametros.add(new Parametro(4, usuarios.getPasword()));
-        lisParametros.add(new Parametro(5, usuarios.getRoles().getId_r()));
-        if (usuarios.getCreado() instanceof java.util.Date) {
-            lisParametros.add(new Parametro(6, new java.sql.Date(((java.util.Date) usuarios.getCreado()).getTime())));
-        } else {
-            lisParametros.add(new Parametro(6, usuarios.getCreado()));
-        }
-        if (usuarios.getCreado() instanceof java.util.Date) {
-            lisParametros.add(new Parametro(7, new java.sql.Date(((java.util.Date) usuarios.getActualizado()).getTime())));
-        } else {
-            lisParametros.add(new Parametro(7, usuarios.getActualizado()));
-        }
-
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            numFilas = con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("error: " + e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return numFilas;
-    }
+public class UsuariosImpl implements IUsuarios{
 
     @Override
-    public int modificar(Usuarios usuarios) throws Exception {
-        int numFilas = 0;
-        String sqlC = "UPDATE usuarios SET id_u=?, nombre=?, email=?, pasword=?, id_r=?, creado=?, actualizado=? WHERE id_u=?";
-        ArrayList<Parametro> lisParametros = new ArrayList<>();
-        lisParametros.add(new Parametro(1, usuarios.getId_u()));
-        lisParametros.add(new Parametro(2, usuarios.getNombre()));
-        lisParametros.add(new Parametro(3, usuarios.getEmail()));
-        lisParametros.add(new Parametro(4, usuarios.getPasword()));
-        lisParametros.add(new Parametro(5, usuarios.getRoles().getId_r()));
-        if (usuarios.getCreado() instanceof java.util.Date) {
-            lisParametros.add(new Parametro(6, new java.sql.Date(((java.util.Date) usuarios.getCreado()).getTime())));
-        } else {
-            lisParametros.add(new Parametro(6, usuarios.getCreado()));
-        }
-        if (usuarios.getCreado() instanceof java.util.Date) {
-            lisParametros.add(new Parametro(7, new java.sql.Date(((java.util.Date) usuarios.getActualizado()).getTime())));
-        } else {
-            lisParametros.add(new Parametro(7, usuarios.getActualizado()));
-        }
-
+    public int insertar(Usuarios usuario) throws Exception{
+        int numFilasAfectadas=0;
+        String sql="insert into usuario values(?,?,?,?,?,?,?)";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, usuario.getId_u()));
+        lstPar.add(new Parametro(2, usuario.getNombre()));
+        lstPar.add(new Parametro(3, usuario.getEmail()));
+        lstPar.add(new Parametro(4, usuario.getPassword()));
+        lstPar.add(new Parametro(5, usuario.getRoles().getId_r()));
+        lstPar.add(new Parametro(6, usuario.getCreado()));
+        lstPar.add(new Parametro(7, usuario.getActualizado()));        
         Conexion con = null;
-        try {
+        try{
             con = new Conexion();
             con.conectar();
-            numFilas = con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+            numFilasAfectadas=con.ejecutarComando(sql, lstPar);
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return numFilas;
+        return numFilasAfectadas;
     }
-
     @Override
-    public int eliminar(Usuarios usuarios) throws Exception {
-        int numFilas = 0;
-        String sqlC = "DELETE FROM usuarios WHERE id_u=?";
-        ArrayList<Parametro> lisParametros = new ArrayList<>();
-        lisParametros.add(new Parametro(1, usuarios.getId_u()));
+    public List<Usuarios> obtener() throws Exception{
+        List<Usuarios> lista = new ArrayList<>();
+        
+        String sql="SELECT * FROM usuario;";
         Conexion con = null;
-        try {
+        try{
+            Usuarios usuario = null;
             con = new Conexion();
             con.conectar();
-            numFilas = con.ejecutarComando(sqlC, lisParametros);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+            ResultSet rst = con.ejecutarQuery(sql, null);
+            while (rst.next()){
+                usuario = new Usuarios();
+                usuario.setId_u(rst.getLong(1));
+                usuario.setNombre(rst.getString(2));
+                usuario.setEmail(rst.getString(3));
+                usuario.setPassword(rst.getString(4));
+                usuario.setCreado(rst.getDate(6));
+                usuario.setActualizado(rst.getDate(7));
+                IRoles rolesdao = new RolesImpl();
+                Roles roles = rolesdao.obtener(rst.getInt(5));
+                usuario.setRoles(roles);
+                lista.add(usuario);                       
+           }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return numFilas;
-    }
-
+        return lista;
+    }  
     @Override
-    public Usuarios obtener(int id_u) throws Exception {
-        Usuarios nUsuario = null;
-        String sqlC = "SELECT id_u, nombre, email, pasword, id_r, creado, actualizado FROM usuarios where id_u=?;";
-        ArrayList<Parametro> lisParametros = new ArrayList<>();
-        lisParametros.add(new Parametro(1, id_u));
+    public Usuarios obtener(long codigo) throws Exception{
+        Usuarios usuario = null;
+        String sql="SELECT * FROM usuario where id_u=?;";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, codigo));
         Conexion con = null;
-        try {
+        try{
             con = new Conexion();
             con.conectar();
-            ResultSet rst = con.ejecutarQuery(sqlC, lisParametros);
-            Roles nrol = null;
-            IRoles roldao = new RolesImpl();
-            while (rst.next()) {
-                nrol = new Roles();
-                nUsuario = new Usuarios();
-                nUsuario.setId_u(rst.getInt(1));
-                nUsuario.setNombre(rst.getString(2));
-                nUsuario.setEmail(rst.getString(3));
-                nUsuario.setPasword(rst.getString(4));
-                nrol = roldao.obtener(rst.getInt(5));
-                nUsuario.setRoles(nrol);
-                nUsuario.setCreado(rst.getDate(6));
-                nUsuario.setActualizado(rst.getDate(7));
+            ResultSet rst = con.ejecutarQuery(sql, lstPar);
+            while (rst.next()){
+                usuario = new Usuarios();
+                usuario.setId_u(rst.getLong(1));
+                usuario.setNombre(rst.getString(2));
+                usuario.setEmail(rst.getString(3));
+                usuario.setPassword(rst.getString(4));
+                usuario.setCreado(rst.getDate(6));
+                usuario.setActualizado(rst.getDate(7));
+                IRoles rolesdao = new RolesImpl();
+                Roles roles = rolesdao.obtener(rst.getInt(5));
+                usuario.setRoles(roles);
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage() + " " + e.getLocalizedMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return nUsuario;
-    }
-
-    @Override
-    public ArrayList<Usuarios> obtener() throws Exception {
-        ArrayList<Usuarios> listUsuari = new ArrayList<>();
-        String sqlC = "SELECT id_u, nombre, email, pasword, id_r, creado, actualizado FROM usuarios";
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            ResultSet rst = con.ejecutarQuery(sqlC, null);
-            Roles rol = null;
-            IRoles roldao = new RolesImpl();
-            while (rst.next()) {
-                Usuarios nusers = new Usuarios();
-                rol = new Roles();    
-                nusers.setId_u(rst.getInt(1));
-                nusers.setNombre(rst.getString(2));
-                nusers.setEmail(rst.getString(3));
-                nusers.setPasword(rst.getString(4));
-                rol = roldao.obtener(rst.getInt(5));
-                nusers.setRoles(rol);
-                nusers.setCreado(rst.getDate(6));
-                nusers.setActualizado(rst.getDate(7));
-
-                listUsuari.add(nusers);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage()+ " " + e.getLocalizedMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return listUsuari;
-    }
+        return usuario;
+    }  
 }

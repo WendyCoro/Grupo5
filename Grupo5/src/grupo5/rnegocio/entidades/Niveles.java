@@ -4,7 +4,7 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Niveles {
-    private int id_n;
+    private long id_n;
     private String nombre;
     private Date creado;
     private Date actualizado; 
@@ -12,18 +12,18 @@ public class Niveles {
     public Niveles() {
     }
 
-    public Niveles(int id_n, String nombre, Date creado, Date actualizado) {
+    public Niveles(long id_n, String nombre, Date creado, Date actualizado) {
         this.id_n = id_n;
         this.nombre = nombre;
         this.creado = creado;
         this.actualizado = actualizado;
     }
 
-    public int getId_n() {
+    public long getId_n() {
         return id_n;
     }
 
-    public void setId_n(int id_n) {
+    public void setId_n(long id_n) {
         this.id_n = id_n;
     }
 

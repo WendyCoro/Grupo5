@@ -6,17 +6,16 @@ import java.sql.*;
 public class Conexion {
     
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    String url = "jdbc:sqlserver://172.30.62.236:1433;databaseName=Grupo5";
-    String usuario = "Wen";
-    String conraseña = "123456";
+    String url = "jdbc:sqlserver://192.168.1.6:1433;databaseName=github";
+    String usuario = "angel";
+    String conraseña = "123";
     Connection conexion = null;
 
        public void conectar() {
 
         try {
             Class.forName(driver);
-            conexion = DriverManager.getConnection(url, usuario, conraseña);
-            System.out.println("Conexion Establecida!!!");
+            conexion = DriverManager.getConnection(url, usuario, conraseña);            
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar Driver: " + e.getMessage());
         } catch (SQLException e) {
@@ -26,12 +25,12 @@ public class Conexion {
         }
     }
 
-    public ResultSet ejecutarQuery(String comandoSQL, List<Parametro> listaParametros) {
+    public ResultSet ejecutarQuery(String comandoSQL,  List<Parametro> lst) {
         ResultSet resultado = null;
         try {
             PreparedStatement estado = conexion.prepareStatement(comandoSQL);
-            if (listaParametros != null) {
-                for (Parametro valorP : listaParametros) {
+            if (lst!= null) {
+                for (Parametro valorP : lst) {
                     
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
@@ -48,13 +47,13 @@ public class Conexion {
         return resultado;
     }
 
-    public int ejecutarComando(String sql, ArrayList<Parametro> ValoresParametro) {
+    public int ejecutarComando(String sql, List<Parametro> lst) {
         int nFilasAfectadas=0;
         ResultSet resultado = null;
         try {
             PreparedStatement estado = conexion.prepareStatement(sql);
-            if (ValoresParametro != null) {
-                for (Parametro valorP : ValoresParametro) {
+            if (lst != null) {
+                for (Parametro valorP : lst) {
                     if (valorP.getValor() instanceof java.util.Date) {
                         estado.setObject(valorP.getPosicion(), new java.sql.Date(((java.util.Date) valorP.getValor()).getTime()));
                     } else {

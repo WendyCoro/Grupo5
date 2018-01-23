@@ -1,80 +1,50 @@
 package grupo5.Test;
-
-
-
-import grupo5.rnegocio.dao.IPublicaciones;
-import grupo5.rnegocio.dao.IUsuarios;
-import grupo5.rnegocio.entidades.Niveles;
-import grupo5.rnegocio.entidades.Publicaciones;
-import grupo5.rnegocio.entidades.Roles;
-import grupo5.rnegocio.entidades.Usuarios;
-import grupo5.rnegocio.impl.PublicacionesImpl;
-import grupo5.rnegocio.impl.UsuariosImpl;
-import java.util.ArrayList;
-import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.*;
 import static org.junit.Assert.*;
-
+import org.junit.Test;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import grupo5.rnegocio.impl.*;
 
 public class UsuarioTest {
-    
     public UsuarioTest() {
     }
-     @Test 
-    public  void testGeneral(){
-        IUsuarios usDao = new UsuariosImpl();
-        //// test insertat
-////        
-        int filas=0;
-        
-        Roles rol=new Roles(1, "Wendy", new java.util.Date(), new java.util.Date());
-        Usuarios user=new Usuarios(5, "carlos", ".com", "3456", rol, new java.util.Date(), new java.util.Date());
-        
-           try {
-            filas=usDao.insertar(user);
-            System.out.println("Filas insertadas: "+filas);
-        } catch (Exception e) {
-              System.out.println("Error: " + e.getMessage());
-        }
-        assertEquals(filas>0, true);
-////        
-        
-        ////test codigo
-//        
-        Usuarios use=new Usuarios();
-        try {
-            use=usDao.obtener(1);
-          
-            System.out.println("\n"+use.getId_u()+" "+use.getNombre()+" "+use.getEmail()+" "+use.getPasword()+" "+use.getRoles().getId_r()+" "+use.getCreado()+" "+use.getActualizado());
-        } catch (Exception e) {
-            System.out.println("error: "+e.getMessage());
-        }
-       assertEquals(use != null, true);
-
-
-//
-////////        //// test listado
-////       
-        ArrayList<Usuarios> usuarioss = new ArrayList<>();
+    @Test
+    public void pruebageneral() throws Exception{
+        //              INSERTAR
+        int filasAfectadas =0;
+        IUsuarios usuariosDao = new UsuariosImpl();
+        IRoles rolesDao = new RolesImpl();
+        Roles roles = rolesDao.obtener(144);
+        Usuarios usuarios = new Usuarios(132,"nombre3","email3","password3",roles,new Date(),new Date());
         
         try{
-            usuarioss = usDao.obtener();
-             System.out.println("ID USUARIO \t" + " NOMBRE\t"+ " \tEMAIL\t"+ " \tPASSWORD\t" + " CREADO\t" + "\tACTUALIZADO\t " );
-           
-            for (Usuarios nusuarios : usuarioss) {
-                 System.out.println(nusuarios.getId_u()+"\t\t"+nusuarios.getNombre()+"\t\t"+nusuarios.getEmail()+"\t\t"+nusuarios.getPasword()+" "+nusuarios.getRoles().getId_r()+"\t\t"+nusuarios.getCreado()+"\t\t"+nusuarios.getActualizado());
+            filasAfectadas = usuariosDao.insertar(usuarios);
+            System.out.println("Usuario ingresado!!!");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE PEdido
+        List<Usuarios> lista = new ArrayList<>();
+        try {
+            lista = usuariosDao.obtener();
+            for (Usuarios u:lista){
+                System.out.println("Id_usuario :"+u.getId_u());
+                System.out.println("Nombre :"+u.getNombre());
+                System.out.println("Email :"+u.getEmail());
+                System.out.println("Contraseña :"+u.getPassword());
+                System.out.println("Fecha de creacion :"+u.getCreado());
+                System.out.println("Fecha de actualizacion :"+u.getActualizado());
+                System.out.println("Rol :"+u.getRoles().getId_r());
             }
-        }catch (Exception e){         
-         
-       }
-      assertEquals(usuarioss!=null, true);
-       
-     
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        assertTrue(lista.size()>0);
     }
-    
-    }
+
+}
+
+
 

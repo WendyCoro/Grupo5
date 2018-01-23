@@ -2,10 +2,10 @@ package grupo5.rnegocio.entidades;
 import java.util.Date;
 
 public class Usuarios {
-    private int id_u;
+    private long id_u;
     private String nombre;
     private String email;
-    private String pasword;
+    private String password;
     private Roles roles;
     private Date creado;
     private Date actualizado;
@@ -13,21 +13,21 @@ public class Usuarios {
     public Usuarios() {
     }
 
-    public Usuarios(int id_u, String nombre, String email, String pasword, Roles roles, Date creado, Date actualizado) {
+    public Usuarios(long id_u, String nombre, String email, String password, Roles roles, Date creado, Date actualizado) {
         this.id_u = id_u;
         this.nombre = nombre;
         this.email = email;
-        this.pasword = pasword;
+        this.password = password;
         this.roles = roles;
         this.creado = creado;
         this.actualizado = actualizado;
     }
 
-    public int getId_u() {
+    public long getId_u() {
         return id_u;
     }
 
-    public void setId_u(int id_u) {
+    public void setId_u(long id_u) {
         this.id_u = id_u;
     }
 
@@ -47,12 +47,12 @@ public class Usuarios {
         this.email = email;
     }
 
-    public String getPasword() {
-        return pasword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasword(String pasword) {
-        this.pasword = pasword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Roles getRoles() {

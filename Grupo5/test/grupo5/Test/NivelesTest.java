@@ -1,68 +1,41 @@
 package grupo5.Test;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import grupo5.rnegocio.dao.INiveles;
-import grupo5.rnegocio.entidades.Niveles;
-import grupo5.rnegocio.impl.NivelesImpl;
-import java.util.ArrayList;
-import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import java.util.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import grupo5.rnegocio.impl.*;
 
-/**
- *
- * @author Wen
- */
 public class NivelesTest {
-    public NivelesTest() {
+   public NivelesTest() {
     }
-        @Test
-    public void testGeneral() {
+    @Test
+    public void pruebageneral(){
+        //              INSERTAR
+        int filasAfectadas =0;
         INiveles nivelesDao = new NivelesImpl();
-            // TEST INSERTAR
-
-            int filas = 0;
-            Niveles nivel=new Niveles(4, "carlos", new java.util.Date(), new java.util.Date());
-            try {
-                filas = nivelesDao.insertar(nivel);
-                System.out.println("Ingreso de " + filas + " Filas Correctas");
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-            assertEquals(filas > 0, true);
-//
-//            //TEST OBTENER POR CODIGO
-////        
-        Niveles niveles=new Niveles();
-        try {
-            niveles=nivelesDao.obtener(1);
-            System.out.println("            "+niveles.getId_n()+"    "+niveles.getNombre()+"    "+niveles.getCreado()+"    "+niveles.getActualizado());
-        } catch (Exception e) {
+        Niveles niveles = new Niveles(174,"jnijk",new Date(),new Date());
+        try{
+            filasAfectadas = nivelesDao.insertar(niveles);
+            System.out.println("Nivel ingresado!!!");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-     
-//            //TEST LISTADO
-            ArrayList<Niveles> niveless = new ArrayList<>();
-            try {
-                niveless = nivelesDao.obtener();
-                 System.out.println("ID ROLES \t" + " NOMBRE\t" + " \tCREADO\t" + "\t\tACTUALIZADO\t " );
-           
-                for (Niveles nivelt : niveless) {
-                    System.out.println(nivelt.getId_n() + "\t\t" + nivelt.getNombre() + "\t\t" + nivelt.getCreado() + "\t\t" + nivelt.getActualizado());
-                }
-            } catch (Exception e) {
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE NIVELES
+        List<Niveles> lista = new ArrayList<>();
+        try {
+            lista = nivelesDao.obtener();
+            for (Niveles n:lista){
+                System.out.println("Id:nivel :"+n.getId_n());
+                System.out.println("Nombre :"+n.getNombre());
+                System.out.println("Fecha de creacion :"+n.getCreado());
+            System.out.println("Fecha de actualizacion :"+n.getActualizado());
             }
-            assertEquals(niveless!= null, true);
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getMessage());
+        }
+        assertTrue(lista.size()>0);
     }
+
 }
-//}
-
-

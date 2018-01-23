@@ -1,202 +1,112 @@
-
 package grupo5.rnegocio.impl;
-
-import grupo5.rnegocio.entidades.Usuarios;
-import grupo5.rnegocio.entidades.Niveles;
-import grupo5.rnegocio.entidades.Publicaciones;
-import grupo5.rnegocio.dao.*;
-import grupo5.rnegocio.entidades.*;
-import gupo5.accesodatos.*;
-import java.util.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import gupo5.accesodatos.*;
 
 public class PublicacionesImpl implements IPublicaciones {
 
     @Override
-
-    public int insertar(Publicaciones publicaciones) throws Exception {
-        int filas = 0;
-        String csql = "insert into publicaciones (id_p, id_u, id_n, titulo, contenido, publicado, vistas, votos, creado, actualizado) values (?,?,?,?,?,?,?,?,?,?)";
-        ArrayList<Parametro> pb = new ArrayList<>();
-        pb.add(new Parametro(1, publicaciones.getId_p()));
-        pb.add(new Parametro(2, publicaciones.getUsuarios().getId_u()));
-        pb.add(new Parametro(3, publicaciones.getNiveles().getId_n()));
-        pb.add(new Parametro(4, publicaciones.getTitulo()));
-        pb.add(new Parametro(5, publicaciones.getContenido()));
-        pb.add(new Parametro(6, publicaciones.getPublicado()));
-        pb.add(new Parametro(7, publicaciones.getVistas()));
-        pb.add(new Parametro(8, publicaciones.getVotos()));
-        if (publicaciones.getCreado() instanceof java.util.Date) {
-            pb.add(new Parametro(9, new java.sql.Date(((java.util.Date) publicaciones.getCreado()).getTime())));
-        } else {
-            pb.add(new Parametro(9, publicaciones.getActualizado()));
-        }
-        if (publicaciones.getCreado() instanceof java.util.Date) {
-            pb.add(new Parametro(10, new java.sql.Date(((java.util.Date) publicaciones.getActualizado()).getTime())));
-        } else {
-            pb.add(new Parametro(10, publicaciones.getActualizado()));
-        }
-
+    public int insertar(Publicaciones publicacion) throws Exception{
+        int numFilasAfectadas=0;
+          String sql = "insert into publicacion values(?,?,?,?,?,?,?,?,?,?)";
+          List<Parametro> lstPar = new ArrayList<>();
+          lstPar.add(new Parametro(1, publicacion.getId_p()));
+          lstPar.add(new Parametro(2, publicacion.getUsuarios().getId_u()));
+          lstPar.add(new Parametro(3, publicacion.getNiveles().getId_n()));
+          lstPar.add(new Parametro(4, publicacion.getTitulo()));
+          lstPar.add(new Parametro(5, publicacion.getContenido()));
+          lstPar.add(new Parametro(6, publicacion.getPublicado()));
+          lstPar.add(new Parametro(7, publicacion.getVistas()));
+          lstPar.add(new Parametro(8, publicacion.getVotos()));
+          lstPar.add(new Parametro(9, publicacion.getCreado()));
+          lstPar.add(new Parametro(10, publicacion.getActualizado()));
         Conexion con = null;
-        try {
+        try{
             con = new Conexion();
             con.conectar();
-            filas = con.ejecutarComando(csql, pb);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage() + " " + e.getLocalizedMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return filas;
-    }
-
-    @Override
-    public int modificar(Publicaciones publicaciones) throws Exception {
-        int filas = 0;
-        String csql = "UPDATE publicaciones set id_p=?, id_u=?, id_n=?, titulo=?, contenido=?, publicado=?, vistas=?, votos=?, creado=?, actualizado=? where ip_p=?";
-        ArrayList<Parametro> pubs = new ArrayList<>();
-        pubs.add(new Parametro(1, publicaciones.getId_p()));
-        pubs.add(new Parametro(2, publicaciones.getUsuarios().getId_u()));
-        pubs.add(new Parametro(3, publicaciones.getNiveles().getId_n()));
-        pubs.add(new Parametro(4, publicaciones.getTitulo()));
-        pubs.add(new Parametro(5, publicaciones.getContenido()));
-        pubs.add(new Parametro(6, publicaciones.getPublicado()));
-        pubs.add(new Parametro(7, publicaciones.getVistas()));
-        pubs.add(new Parametro(8, publicaciones.getVotos()));
-        pubs.add(new Parametro(9, publicaciones.getCreado()));
-        pubs.add(new Parametro(10, publicaciones.getActualizado()));
-
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            filas = con.ejecutarComando(csql, pubs);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return filas;
-    }
-
-    @Override
-
-    public int eliminar(Publicaciones publicaciones) throws Exception {
-
-        int filas = 0;
-        String csql = "DELETE FROM publicaciones WHERE id_p=?";
-        ArrayList<Parametro> pubs = new ArrayList<>();
-        pubs.add(new Parametro(1, publicaciones.getId_p()));
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            filas = con.ejecutarComando(csql, pubs);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return filas;
-
-    }
-
-    @Override
-    public Publicaciones obtener(int codigo) throws Exception {
-        Publicaciones npb = null;
-
-        String csql = "select id_p, id_u, id_n, titulo, contenido, publicado, vistas, votos, creado, actualizado from publicaciones where id_p=?";
-        ArrayList<Parametro> pubs = new ArrayList<>();
-        pubs.add(new Parametro(1, codigo));
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            Usuarios us = null;
-            IUsuarios usuariodao = new UsuariosImpl();
-            Niveles nv = null;
-            INiveles niveldao = new NivelesImpl();
-            ResultSet rst = con.ejecutarQuery(csql, pubs);
-            while (rst.next()) {
-                us = new Usuarios();
-                nv = new Niveles();
-                npb = new Publicaciones();
-                npb.setId_p(rst.getInt(1));
-                us = usuariodao.obtener(rst.getInt(2));
-                npb.setUsuarios(us);
-                nv = niveldao.obtener(rst.getInt(3));
-                npb.setNiveles(nv);
-                npb.setTitulo(rst.getString(4));
-                npb.setContenido(rst.getString(5));
-                npb.setPublicado(rst.getInt(6));
-                npb.setVistas(rst.getInt(7));
-                npb.setVotos(rst.getDouble(8));
-                npb.setCreado(rst.getDate(9));
-                npb.setActualizado(rst.getDate(10));
-
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage() + " " + e.getLocalizedMessage());
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
-        }
-        return npb;
-
-    }
-
-    @Override
-    public ArrayList<Publicaciones> obtener() throws Exception {
-        Publicaciones pub = null;
-        String csql = "select id_p, id_u, id_n, titulo, contenido, publicado, vistas, votos, creado, actualizado from publicaciones";
-        ArrayList<Publicaciones> pulb = new ArrayList<>();
-        Conexion con = null;
-        try {
-            con = new Conexion();
-            con.conectar();
-            ResultSet rst = con.ejecutarQuery(csql, null);
-            while (rst.next()) {
-                Usuarios us = null;
-                IUsuarios usuariodao = new UsuariosImpl();
-                Niveles nv = null;
-                INiveles niveldao = new NivelesImpl();
-                us = new Usuarios();               
-                nv = new Niveles();               
-                pub = new Publicaciones();
-                pub.setId_p(rst.getInt(1));
-                us = usuariodao.obtener(rst.getInt(2));
-                pub.setUsuarios(us);
-                nv = niveldao.obtener(rst.getInt(3));
-                pub.setNiveles(nv);
-                pub.setTitulo(rst.getString(4));
-                pub.setContenido(rst.getString(5));
-                pub.setPublicado(rst.getInt(6));
-                pub.setVistas(rst.getInt(7));
-                pub.setVotos(rst.getDouble(8));
-                pub.setCreado(rst.getDate(9));
-                pub.setActualizado(rst.getDate(10));
-
-                pulb.add(pub);
-
-            }
-        } catch (Exception e) {
+            numFilasAfectadas=con.ejecutarComando(sql, lstPar);
+        }catch (Exception e) {
             throw e;
-        } finally {
-            if (con != null) {
-                con.desconectar();
-            }
+        }finally {
+            if(con!=null)
+            con.desconectar();
         }
-        return pulb;
-
+        return numFilasAfectadas;
     }
-
+    @Override
+    public List<Publicaciones> obtener() throws Exception{
+        List<Publicaciones> lista = new ArrayList<>();
+        
+        String sql="SELECT * FROM publicacion;";
+        Conexion con = null;
+        try{
+            Publicaciones publicacion = null;
+            con = new Conexion();
+            con.conectar();
+            ResultSet rst = con.ejecutarQuery(sql, null);
+            while (rst.next()){
+                publicacion = new Publicaciones();
+                publicacion.setId_p(rst.getLong(1));
+                IUsuarios usuariosdao = new UsuariosImpl();
+                Usuarios usuarios = usuariosdao.obtener(rst.getInt(2));
+                publicacion.setUsuarios(usuarios);
+                INiveles nivelesdao = new NivelesImpl();
+                Niveles niveles = nivelesdao.obtener(rst.getInt(3));
+                publicacion.setNiveles(niveles);
+                publicacion.setTitulo(rst.getString(4));
+                publicacion.setContenido(rst.getString(5));
+                publicacion.setPublicado(rst.getInt(6));
+                publicacion.setVistas(rst.getInt(7));
+                publicacion.setVotos(rst.getDouble(8));
+                publicacion.setCreado(rst.getDate(9));
+                publicacion.setActualizado(rst.getDate(10));
+                lista.add(publicacion);
+           }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
+        }
+        return lista;
+    }  
+    @Override
+    public Publicaciones obtener(long codigo) throws Exception{
+        Publicaciones publicacion = null;
+        String sql="SELECT * FROM publicacion where id_p=?;";
+        List<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, codigo));
+        Conexion con = null;
+        try{
+            con = new Conexion();
+            con.conectar();
+            ResultSet rst = con.ejecutarQuery(sql, lstPar);
+            while (rst.next()){
+                publicacion = new Publicaciones();
+                publicacion.setId_p(rst.getLong(1));
+                IUsuarios usuariosdao = new UsuariosImpl();
+                Usuarios usuarios = usuariosdao.obtener(rst.getInt(2));
+                publicacion.setUsuarios(usuarios);
+                INiveles nivelesdao = new NivelesImpl();
+                Niveles niveles = nivelesdao.obtener(rst.getInt(3));
+                publicacion.setNiveles(niveles);
+                publicacion.setTitulo(rst.getString(4));
+                publicacion.setContenido(rst.getString(5));
+                publicacion.setPublicado(rst.getInt(6));
+                publicacion.setVistas(rst.getInt(7));
+                publicacion.setVotos(rst.getDouble(8));
+                publicacion.setCreado(rst.getDate(9));
+                publicacion.setActualizado(rst.getDate(10));
+            }
+        }catch (Exception e) {
+            throw e;
+        }finally {
+            if(con!=null)
+            con.desconectar();
+        }
+        return publicacion;
+    }
 }

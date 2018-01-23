@@ -1,80 +1,46 @@
 package grupo5.Test;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import grupo5.rnegocio.dao.IEtiquetas_publicaciones;
-import grupo5.rnegocio.entidades.Etiquetas;
-import grupo5.rnegocio.entidades.Etiquetas_publicaciones;
-import grupo5.rnegocio.entidades.Niveles;
-import grupo5.rnegocio.entidades.Publicaciones;
-import grupo5.rnegocio.entidades.Roles;
-import grupo5.rnegocio.entidades.Usuarios;
-import grupo5.rnegocio.impl.EtiquetaspImpl;
-import java.util.ArrayList;
-import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import java.util.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
+import grupo5.rnegocio.dao.*;
+import grupo5.rnegocio.entidades.*;
+import grupo5.rnegocio.impl.*;
 
-/**
- *
- * @author Wen
- */
 public class Etiquetas_ptest {
-
-    public Etiquetas_ptest() {
+public Etiquetas_ptest() {
     }
-
     @Test
-    public void testGeneral() {
-        IEtiquetas_publicaciones epDao = new EtiquetaspImpl();
-        ///////////INSERTAR TEST
-        int filas = 0;
-//
-        Roles ro = new Roles(2, " Wendy ", new java.util.Date(), new java.util.Date());
-        Niveles nive = new Niveles(1, "Carlos", new java.util.Date(), new java.util.Date());
-        Usuarios usua = new Usuarios(1, " Wendy ", "ao@com", "12", ro, new java.util.Date(), new java.util.Date());
-        Publicaciones publi = new Publicaciones(1, usua, nive, "casa", "ropa", 1, 1, 1.5, new java.util.Date(), new java.util.Date());
-        Etiquetas eti = new Etiquetas(2, " Wendy ", new java.util.Date(), new java.util.Date());
-        Etiquetas_publicaciones etipubli = new Etiquetas_publicaciones(3, eti, publi, new java.util.Date(), new java.util.Date());
-
-        try {
-            filas = epDao.insertar(etipubli);
-            System.out.println("Filas insertadas: " + filas);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+    public void pruebageneral() throws Exception{
+        //              INSERTAR
+        int filasAfectadas =0;
+        IEtiquetas_publicaciones etiquetaspDao = new EtiquetaspImpl();
+        IEtiquetas etiquetasDao = new EtiquetasImpl();
+        Etiquetas etiqueta = etiquetasDao.obtener(1234);
+        IPublicaciones publicacionesDao = new PublicacionesImpl();
+        Publicaciones publicacion = publicacionesDao.obtener(182);
+        Etiquetas_publicaciones etiqueta_publicacion = new Etiquetas_publicaciones(etiqueta,publicacion,new Date(),new Date());
+        try{
+            filasAfectadas = etiquetaspDao.insertar(etiqueta_publicacion);
+            System.out.println("Ingresado!!!");
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
         }
-        assertEquals(filas > 0, true);
-        //LISTAR POR CODIGO TEST
-      Etiquetas_publicaciones epu = new Etiquetas_publicaciones();
-     try {
-          epu = epDao.obtener(1);
-          System.out.println("CODIGO_EP " + " CODIGO_E" + " CODIGO_P" + " CREADO " + "      ACTUALIZADO ");
-          System.out.println(epu.getId_ep() + "             " + epu.getEtiquetas().getId_e() + "        " + epu.getPublicaciones().getId_p() + "    " + epu.getCreado() + "   " + epu.getActualizado());
-      } catch (Exception e) {
-          System.out.println("error: " + e.getMessage());
-      }
-      assertEquals(epu != null, true);
-//////////        //// test listado
-       
-        ArrayList<Etiquetas_publicaciones> etipu = new ArrayList<>();
+        assertEquals(filasAfectadas>0, true);
+        //              LISTADO DE PEdido
+        List<Etiquetas_publicaciones> lista = new ArrayList<>();
         try {
-            etipu = epDao.obtener();
-            for (Etiquetas_publicaciones nup : etipu) {
-                System.out.println("CODIGO_EP " + " CODIGO_E" + " CODIGO_P" + " CREADO " + "      ACTUALIZADO ");
-                System.out.println(nup.getId_ep() + "             " + nup.getEtiquetas().getId_e() + "        " + nup.getPublicaciones().getId_p() + "    " + nup.getCreado() + "   " + nup.getActualizado());
+            lista = etiquetaspDao.obtener();
+            for (Etiquetas_publicaciones ep:lista){               
+                System.out.println("Etiqueta :"+ep.getEtiquetas().getId_e());
+                System.out.println("Publicacion :"+ep.getPublicaciones().getId_p());
+                System.out.println("Fecha creado :"+ep.getCreado());
+                System.out.println("Fecha actualizado :"+ep.getActualizado());
+                
             }
         } catch (Exception e) {
-            System.out.println("error: " + e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
-        assertEquals(etipu != null, true);
+        assertTrue(lista.size()>0);
     }
+
 }
