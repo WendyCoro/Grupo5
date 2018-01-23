@@ -6,8 +6,8 @@ import java.sql.*;
 public class Conexion {
     
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    String url = "jdbc:sqlserver://192.168.1.6:1433;databaseName=github";
-    String usuario = "angel";
+    String url = "jdbc:sqlserver://172.30.3.50:1433;databaseName=github";
+    String usuario = "ronald";
     String conraseña = "123";
     Connection conexion = null;
 
